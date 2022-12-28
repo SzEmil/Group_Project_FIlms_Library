@@ -24,3 +24,30 @@
   background-size: cover;
   background-position: center;
 }
+
+.home-gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 30px;
+}
+
+.home-gallery__img {
+  border-radius: 5px;
+  -webkit-transition-property: scale;
+  transition-property: scale;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+          transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.home-gallery__img:hover {
+  scale: 1.1;
+}
+
+.home-gallery__card {
+  width: 274px;
+}

@@ -1,0 +1,17 @@
+.home-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.home-gallery__img {
+  border-radius: 5px;
+  transition-property: scale;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+.home-gallery__img:hover {
+  scale: 1.1;
+}
+.home-gallery__card {
+  width: 274px;
+}
