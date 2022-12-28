@@ -3,12 +3,12 @@ const sacas = 'ass';
 import { fetchVideo } from './fetch-video';
 import { fetchVideoPopular } from './fetch-video';
 
-console.log('hejo bla bla');
+
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('.home-gallery');
 let pageNumber = 1;
-
-const searchVideo = event => {
+let boject = {};
+const searchVideo = async event => {
   event.preventDefault();
 
   const {
@@ -17,12 +17,13 @@ const searchVideo = event => {
 
   const formSearch = searchQuery.value;
   console.log(formSearch);
-  fetchVideo(formSearch, pageNumber)
+  await fetchVideo(formSearch, pageNumber)
     .then(data => {
       const dataArray = data.results;
       console.log(dataArray);
       gallery.innerHTML = ``;
       renderVideoCard(dataArray);
+      boject = data;
     })
     .catch(error => {
       console.error(error);
@@ -40,8 +41,6 @@ const renderVideoCard = videoArray => {
 
 // const generatePopularVideos = async event => {
 //   try {
-//     const name = 'spiderman';
-//     const pageNumber = 1;
 //     // event.preventDefault();
 //     console.log('fetchujemy filmy');
 //     const videos = await fetchVideoPopular();
