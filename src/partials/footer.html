@@ -1,4 +1,25 @@
 <footer class="footer">
-  <p>© 2023 | All Rights Reserved | Developed with <3 by <a href="#">Harnaś Team</a></p>
+  <div class="footer__text">
+    <div class="footer__text-first">© 2023 | All Rights Reserved |</div>
+    <div class="footer__text-second">
+      Developed with
+      <svg width="14" height="12.75">
+        <use xlink:href="./images/icons.svg#icon-heart"></use>
+      </svg>
+      <span>by <a href="#" data-modal-open>Harnaś Team</a></span>
+    </div>
+  </div>
 </footer>
 
+<!-- modal-team -->
+<div class="modal is-hidden" data-modal>
+  <div class="modal__block">
+    <button type="button" class="modal__close-btn" data-modal-close>
+      <svg class="modal__close-icon" width="15" height="16">
+        <use href="images/icons.svg#icon-close"></use>
+      </svg>
+    </button>
+    tutaj będą Wasz mordeczki
+  </div>
+</div>
+<script src="./js/modal-team.js"></script>
