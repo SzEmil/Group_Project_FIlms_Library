@@ -115,15 +115,51 @@ body {
   border-radius: 5px;
   margin-bottom: 30.43;
 }
+.more-info-modal__details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 39px;
+}
+.more-info-modal__details--header {
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8c8c8c;
+  margin-top: 10px;
+}
+.more-info-modal__details--text {
+  font-size: 12px;
+  line-height: 1.17;
+  margin-top: 10px;
+}
+.more-info-modal__details--average {
+  border: 1px solid green;
+  width: 36px;
+  height: 16px;
+  background-color: #ff6b01;
+  border-radius: 5px;
+}
+.more-info-modal__details--count {
+  width: 36px;
+  height: 16px;
+  background: #f7f7f7;
+  border-radius: 5px;
+}
 .more-info-modal__title {
   font-size: 20px;
   line-height: 1.15;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
 }
 .more-info-modal__subtitle {
   font-size: 12px;
   line-height: 1.33;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 .more-info-modal__text {
   width: 240px;

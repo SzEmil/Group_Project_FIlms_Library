@@ -49,16 +49,52 @@ body {
     margin-bottom: 30.43;
   }
 
+  &__details {
+    display: flex;
+    flex-direction: row;
+    gap: 39px;
+
+    &--header {
+      font-size: 12px;
+      line-height: 1.33;
+      color: #8c8c8c;
+      margin-top: 10px;
+    }
+
+    &--text {
+      font-size: 12px;
+      line-height: 1.17;
+      margin-top: 10px;
+    }
+
+    &--average {
+      border: 1px solid green;
+      width: 36px;
+      height: 16px;
+      background-color: #ff6b01;
+      border-radius: 5px;
+    }
+
+    &--count {
+      width: 36px;
+      height: 16px;
+      background: #f7f7f7;
+      border-radius: 5px;
+    }
+  }
+
   &__title {
     font-size: 20px;
     line-height: 1.15;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
   }
 
   &__subtitle {
     font-size: 12px;
     line-height: 1.33;
     margin-bottom: 10px;
+    margin-top: 20px;
   }
   &__text {
     width: 240px;
