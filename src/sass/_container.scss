@@ -1,0 +1,28 @@
+// ----- MOBILE -----
+.container {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+// ----- TABLET ------
+@media screen and (min-width: 768px) {
+  .container {
+    width: 100vw;
+    max-width: 1023px;
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+// ----- DESKTOP -----
+@media screen and (min-width: 1024px) {
+  .container {
+    width: 100vw;
+    max-width: 1024px;
+    padding-left: 71px;
+    padding-right: 71px;
+  }
+}
