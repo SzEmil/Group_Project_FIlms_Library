@@ -14,115 +14,116 @@
 // nie wiem jak z fontami, kto ma je dołączyć
 // musimy ustalić jednolite hovery
 // do zostawienia, chociaż nie wiem jak z container, czy modal nie będzie miał i tak swojego
-.container-modal {
-  margin-left: 20px;
-  margin-right: 20px;
-}
+@media screen and (max-width: 768px) {
+  .container-modal {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
 
-.more-info-modal {
-  width: 280px;
-  border: 1px solid black;
-  color: black;
+  .more-info-modal {
+    border: 1px solid black;
+    color: black;
 
-  &__close-btn {
-    background-color: white;
-    border: none;
-    padding: 18px 10px 16px 240px;
-    &--icon {
-      width: 30px;
-      height: 30px;
-      fill: black;
+    &__close-btn {
+      background-color: white;
+      border: none;
+      padding: 18px 10px 16px 240px;
+      &--icon {
+        width: 30px;
+        height: 30px;
+        fill: black;
+      }
     }
-  }
 
-  &__poster {
-    width: 240px;
-    height: 356.57px;
-    border-radius: 5px;
-    margin-bottom: 30.43;
-  }
+    &__poster {
+      width: 240px;
+      height: 356.57px;
+      border-radius: 5px;
+      margin-bottom: 30.43;
+    }
 
-  &__details {
-    display: flex;
-    flex-direction: row;
-    gap: 39px;
+    &__details {
+      display: flex;
+      flex-direction: row;
+      gap: 39px;
 
-    &--header {
+      &--header {
+        font-size: 12px;
+        line-height: 1.33;
+        color: #8c8c8c;
+        margin-top: 10px;
+      }
+
+      &--text {
+        font-size: 12px;
+        line-height: 1.17;
+        margin-top: 10px;
+      }
+
+      &--average {
+        background-color: #ff6b01;
+        border-radius: 5px;
+        padding: 1px 10px 1px 10px;
+        color: white;
+      }
+
+      &--count {
+        padding: 1px 4px 1px 4px;
+        background: #f7f7f7;
+        border-radius: 5px;
+      }
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    &__subtitle {
       font-size: 12px;
       line-height: 1.33;
-      color: #8c8c8c;
-      margin-top: 10px;
+      margin-bottom: 10px;
+      margin-top: 20px;
     }
-
-    &--text {
+    &__text {
+      width: 240px;
       font-size: 12px;
-      line-height: 1.17;
-      margin-top: 10px;
+      line-height: 1.67;
     }
 
-    &--average {
-      background-color: #ff6b01;
+    &__btn-box {
+      display: flex;
+      flex-direction: row;
+      gap: 14.85;
+      margin-top: 21px;
+      margin-bottom: 41px;
+    }
+
+    &__btn {
+      font-size: 12px;
+      line-height: 1.33;
+      width: 112.58px;
+      height: 44px;
+      border-width: 1px;
       border-radius: 5px;
-      padding: 1px 10px 1px 10px;
-      color: white;
-    }
+      outline: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    &--count {
-      padding: 1px 4px 1px 4px;
-      background: #f7f7f7;
-      border-radius: 5px;
-    }
-  }
+      &--watched {
+        background-color: #ff6b01;
+        color: white;
+        border: none;
+        padding-left: 8px;
+        padding-right: 8px;
+      }
 
-  &__title {
-    font-size: 20px;
-    line-height: 1.15;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-
-  &__subtitle {
-    font-size: 12px;
-    line-height: 1.33;
-    margin-bottom: 10px;
-    margin-top: 20px;
-  }
-  &__text {
-    width: 240px;
-    font-size: 12px;
-    line-height: 1.67;
-  }
-
-  &__btn-box {
-    display: flex;
-    flex-direction: row;
-    gap: 14.85;
-    margin-top: 21px;
-    margin-bottom: 41px;
-  }
-
-  &__btn {
-    font-size: 12px;
-    line-height: 1.33;
-    width: 112.58px;
-    height: 44px;
-    border-width: 1px;
-    border-radius: 5px;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    &--watched {
-      background-color: #ff6b01;
-      color: white;
-      border: none;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-
-    &--queue {
-      background-color: white;
+      &--queue {
+        background-color: white;
+      }
     }
   }
 }
@@ -137,8 +138,6 @@
     gap: 32px;
   }
   .more-info-modal {
-    width: 618px;
-
     &__close-btn {
       padding: 10px 10px 2px 578px;
     }
@@ -178,7 +177,7 @@
     gap: 30px;
   }
   .more-info-modal {
-    width: 882px;
+    max-width: 882px;
 
     &__close-btn {
       padding: 10px 10px 10px 842px;
