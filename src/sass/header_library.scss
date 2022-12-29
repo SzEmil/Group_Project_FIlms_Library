@@ -1,4 +1,3 @@
-
 button {
   cursor: pointer;
 }
@@ -14,29 +13,6 @@ p {
   margin: 0;
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  @media screen and (max-width: 767px) {
-    width: 320px;
-  }
-
-  @media screen and (min-width: 768px) {
-    width: 768px;
-    padding-left: 75px;
-    padding-right: 75px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    width: 1024px;
-    padding-left: 71px;
-    padding-right: 71px;
-  }
-}
-
 .header-section-library {
   font-family: 'Roboto', sans-serif;
   line-height: 1.17;
@@ -47,7 +23,7 @@ p {
   margin-left: auto;
   margin-right: auto;
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-  url(../images/my-library/header-library-background-desktop@1x.jpg);
+    url(../images/my-library/header-library-background-desktop@1x.jpg);
   background-color: #000000;
   background-position: center;
   background-repeat: no-repeat;
@@ -55,26 +31,28 @@ p {
 
   @media screen and (max-width: 767px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/my-library/header-library-background-mobile@2x.jpg);
+      url(../images/my-library/header-library-background-mobile@2x.jpg);
   }
   @media screen and (min-width: 768px) and (max-width: 1200px) {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/my-library/header-library-background-tablet@2x.jpg);
+      url(../images/my-library/header-library-background-tablet@2x.jpg);
   }
 }
 
-.nav, .nav__logo, .nav__side-nav {
+.nav,
+.nav__logo,
+.nav__side-nav {
   display: flex;
   flex-flow: row nowrap;
 }
 
 .nav {
-
   justify-content: space-between;
   align-items: center;
 
-  &__logo, &__side-nav-link {
-    color: #FFFFFF;
+  &__logo,
+  &__side-nav-link {
+    color: #ffffff;
     text-decoration: none;
   }
 
@@ -104,7 +82,7 @@ p {
       width: 100%;
       bottom: -3px;
       left: 0;
-      background-color: #FF6B08;
+      background-color: #ff6b08;
     }
   }
 }
@@ -125,16 +103,15 @@ p {
     box-sizing: border-box;
     padding: 14px 38px 12px 38px;
     background-color: transparent;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     transition-property: background-color, border, box-shadow;
     transition-duration: 300ms;
     transition-timing-function: ease;
 
     &.active {
-      background-color: #FF6B01;
+      background-color: #ff6b01;
       box-shadow: 0 8px 43px rgba(255, 107, 1, 0.6);
-      border: 1px solid #FF6B01;
-
+      border: 1px solid #ff6b01;
     }
   }
 
@@ -143,6 +120,13 @@ p {
     width: 60px;
     font-size: 15px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
   }
+}
+
+@media screen and (min-width: 768px) {
+}
+
+// ----- DESKTOP -----
+@media screen and (min-width: 1024px) {
 }
