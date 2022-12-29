@@ -7,23 +7,23 @@ const moreInfoModal = document.querySelector(".more-info-modal")
 
 
 
-fetchVideo("Pretty Woman", 1)
-    .then(data => {
-        console.log(data)
-        const dataArray = data.results;
-        const example = dataArray[0];
-
-        renderModal(example);
-    })
-    .catch(error => {
-        console.error(error)
-    })
+fetchVideo("A fistful of Lead", 1)
+  .then(data => {
+    console.log(data)
+    const dataArray = data.results;
+    const example = dataArray[0];
+    console.log(example)
+    renderModal(example);
+  })
+  .catch(error => {
+    console.error(error)
+  })
 
 
 
 const renderModal = example => {
-    const markup = `<button class="more-info-modal__close-btn">
-    <img class="more-info-modal__close-btn--icon" src="./src/images/close.svg" />
+  const markup = `<button class="more-info-modal__close-btn">
+    X
   </button>
   <div class="container-modal">
     <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}" />
@@ -38,13 +38,16 @@ const renderModal = example => {
       </ul>
 
       <ul>
-      <li class="more-info-modal__details--text"><span class="more-info__details--average">${example.vote_average}</span> / <span class="more-info__details--count">${example.vote_count}</span></li>
+      <li class="more-info-modal__details--text">
+      <span class="more-info-modal__details--average">${example.vote_average}</span>
+      /
+      <span class="more-info-modal__details--count">${example.vote_count}</span>
+      </li>
       <li class="more-info-modal__details--text">${example.popularity}</li>
       <li class="more-info-modal__details--text">${example.original_title}</li>
       <li class="more-info-modal__details--text">${example.genre_ids}</li>
       </ul>
       </div>
-      
       
       <h3 class="more-info-modal__subtitle">ABOUT</h3>
       <p class="more-info-modal__text">
@@ -61,5 +64,5 @@ const renderModal = example => {
     </div>
   </div>`
 
-    moreInfoModal.innerHTML = markup;
+  moreInfoModal.innerHTML = markup;
 };

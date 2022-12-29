@@ -11,34 +11,27 @@
   font-weight: 500;
 }
 
-body {
-  margin: 0 auto;
-}
-
+// nie wiem jak z fontami, kto ma je dołączyć
+// musimy ustalić jednolite hovery
+// do zostawienia, chociaż nie wiem jak z container, czy modal nie będzie miał i tak swojego
 .container-modal {
   margin-left: 20px;
   margin-right: 20px;
 }
-// nie wiem jak z fontami, kto ma je dołączyć
-// musimy ustalić jednolite hovery
-// do zostawienia, chociaż nie wiem jak z container, czy modal nie będzie miał i tak swojego
+
 .more-info-modal {
   width: 280px;
   border: 1px solid black;
   color: black;
 
   &__close-btn {
-    //width: 30px;
-    //height: 30px;
-    //display: inline-block;
     background-color: white;
     border: none;
     padding: 18px 10px 16px 240px;
-    //margin-right: 20px;
-    //padding-right: 18px;
     &--icon {
       width: 30px;
       height: 30px;
+      fill: black;
     }
   }
 
@@ -68,16 +61,14 @@ body {
     }
 
     &--average {
-      border: 1px solid green;
-      width: 36px;
-      height: 16px;
       background-color: #ff6b01;
       border-radius: 5px;
+      padding: 1px 10px 1px 10px;
+      color: white;
     }
 
     &--count {
-      width: 36px;
-      height: 16px;
+      padding: 1px 4px 1px 4px;
       background: #f7f7f7;
       border-radius: 5px;
     }
@@ -155,7 +146,7 @@ body {
     &__poster {
       width: 264px;
       height: 373.55px;
-      margin-bottom: 0;
+      margin-bottom: 0px;
     }
 
     &__text {

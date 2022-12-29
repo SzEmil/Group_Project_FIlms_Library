@@ -86,10 +86,6 @@
   font-weight: 500;
 }
 
-body {
-  margin: 0 auto;
-}
-
 .container-modal {
   margin-left: 20px;
   margin-right: 20px;
@@ -108,6 +104,7 @@ body {
 .more-info-modal__close-btn--icon {
   width: 30px;
   height: 30px;
+  fill: black;
 }
 .more-info-modal__poster {
   width: 240px;
@@ -137,15 +134,13 @@ body {
   margin-top: 10px;
 }
 .more-info-modal__details--average {
-  border: 1px solid green;
-  width: 36px;
-  height: 16px;
   background-color: #ff6b01;
   border-radius: 5px;
+  padding: 1px 10px 1px 10px;
+  color: white;
 }
 .more-info-modal__details--count {
-  width: 36px;
-  height: 16px;
+  padding: 1px 4px 1px 4px;
   background: #f7f7f7;
   border-radius: 5px;
 }
@@ -230,7 +225,7 @@ body {
   .more-info-modal__poster {
     width: 264px;
     height: 373.55px;
-    margin-bottom: 0;
+    margin-bottom: 0px;
   }
   .more-info-modal__text {
     width: 264px;
