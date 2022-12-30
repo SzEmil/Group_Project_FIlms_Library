@@ -17,14 +17,14 @@ body {
 
 // ----- TABLET ------
 @media screen and (min-width: 768px) {
-  .body {
+  body {
     max-width: 1023px;
   }
 }
 
 // ----- DESKTOP -----
 @media screen and (min-width: 1024px) {
-  .body {
+  body {
     max-width: 1024px;
 
     &--shadow {
