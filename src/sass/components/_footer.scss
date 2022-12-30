@@ -19,20 +19,21 @@
     font-size: 14px;
     line-height: 19px;
     align-items: center;
+    align-content: center;
 
     @media screen and (min-width: 768px) {
       flex-direction: row;
       padding-top: 30px;
       padding-bottom: 28px;
     }
-  }
 
-  &__text-first {
-    margin-right: 5px;
-    margin-bottom: 9.9px;
-    @media screen and (min-width: 768px) {
-      margin-bottom: 0;
+    &-first {
       margin-right: 0;
+      margin-bottom: 9.9px;
+      @media screen and (min-width: 768px) {
+        margin-bottom: 0;
+        margin-right: 5px;
+      }
     }
   }
 }
@@ -41,6 +42,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
+  display: none;
 }
 
 .modal {
@@ -49,7 +51,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
   padding: 0 15px;
   background-color: rgba(0, 0, 0, 0.2);
   transition: opacity 250ms, visibility 250ms;
@@ -67,17 +68,114 @@
 
   &__block {
     position: relative;
-    top: 50%;
+    top: 40%;
     left: 50%;
     width: 100%;
-    padding: 40px;
     transform: translate(-50%, -50%);
-    background-color: white;
     border-radius: 4px;
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media screen and (min-width: 1200px) {
-      width: 528px;
+      width: 1000px;
+    }
+
+    &-header {
+      background-color: #ff6b08;
+      width: 100%;
+      height: 170px;
+      position: relative;
+      z-index: -1;
+      border-radius: 10px;
+
+      @media screen and (min-width: 768px) {
+        width: 100%;
+        height: 170px;
+      }
+    }
+
+    &-team {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 30;
+
+      @media screen and (min-width: 768px) {
+        flex-direction: row;
+        top: 90;
+      }
+    }
+  }
+
+  img {
+    width: 60%;
+    height: auto;
+    border-radius: 100%;
+  }
+
+  .team {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+
+    &__first {
+      color: #545454;
+    }
+
+    &__second {
+      background-color: #545454;
+      color: white;
+    }
+
+    &__name {
+      font-weight: 600;
+    }
+
+    &__role {
+      font-size: 12px;
+    }
+
+    &__media {
+      display: flex;
+      justify-content: center;
+
+      &-icon {
+        border-radius: 50%;
+        margin-left: 10px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:focus,
+        :hover {
+          cursor: pointer;
+          transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+
+      &-link {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:focus,
+        :hover {
+          cursor: pointer;
+          transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
     }
   }
 
@@ -87,29 +185,62 @@
     right: 8px;
     width: 30px;
     height: 30px;
-    background-color: white;
-    border: 1px solid #545454;
+    background-color: #545454;
+    border: 1px solid white;
     border-radius: 50%;
     cursor: pointer;
 
     &:hover,
     &:focus {
       cursor: pointer;
-      background-color: #ff6b08;
-      color: white;
+      background-color: white;
+      border: 1px solid #545454;
       transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
       transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &:hover .modal__close-icon,
     &:focus .modal__close-icon {
-      fill: white;
+      fill: #545454;
     }
   }
 
   &__close-icon {
-    fill: #545454;
+    fill: white;
     width: 11px;
     height: 11px;
+  }
+
+  &__media-icon {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.first {
+  background-color: white;
+
+  &:focus,
+  :hover {
+    background-color: #ff6b08;
+    fill: white;
+  }
+
+  &-icon {
+    fill: #ff6b08;
+  }
+}
+
+.second {
+  background-color: #ff6b08;
+
+  &:focus,
+  :hover {
+    background-color: white;
+    fill: #ff6b08;
+  }
+
+  &-icon {
+    fill: white;
   }
 }
