@@ -96,15 +96,12 @@
     &:hover:after {
       background-color: #ffffff;
       max-width: 100%;
-      transition: max-width 250ms ease;
     }
 
     &.active::after {
       background-color: #ff6b08;
       max-width: 100%;
     }
-
-
   }
 }
 
