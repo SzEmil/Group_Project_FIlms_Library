@@ -19,3 +19,14 @@ export const fetchVideoPopular = async () => {
 
   return videos;
 };
+
+// zapytanie o szczegółowe informacje dotyczące filmu
+export const fetchDetails = async movieId => {
+  const response = await fetch(
+    `https://api.themoviedb.org/3/movie/${movieId}?api_key=5349b69c770fce41df09c49c43dbcd6b&language=en-US`
+  );
+
+  const videoDetails = await response.json();
+
+  return videoDetails;
+};
