@@ -1,0 +1,29 @@
+$font-color: (
+  'dark-text': black,
+  'light-text': #8c8c8c,
+  'on-leading-bg': white,
+  'leading': #ff6b08,
+);
+$bg-color: (
+  'backdrop': (
+    rgba(0, 0, 0, 0.25),
+  ),
+  'basic': white,
+  'leading': #ff6b01,
+  'footer-bg': #f7f7f7,
+  'header-underline': #ff6b08,
+  'logo-fill': #818181,
+);
+//$hover: ();
+
+@function get-font-color($key) {
+  @return map-get($font-color, $key);
+}
+
+@function get-bg-color($key) {
+  @return map-get($bg-color, $key);
+}
+
+// @function get-hover($key) {
+//   @return map-get($hover, $key);
+// }

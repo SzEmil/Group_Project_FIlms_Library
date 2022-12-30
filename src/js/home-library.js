@@ -3,7 +3,6 @@ const sacas = 'ass';
 import { fetchVideo } from './fetch-video';
 import { fetchVideoPopular } from './fetch-video';
 
-
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('.home-gallery');
 let pageNumber = 1;

@@ -1,0 +1,97 @@
+.grid_my_library {
+  padding-top: 60px;
+  padding-bottom: 46px;
+
+  &__elements {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 30px;
+    list-style: none;
+    justify-content: center;
+    @media screen and (min-width: 768px) {
+      justify-content: flex-start;
+    }
+
+    // ----- DESKTOP -----
+    @media screen and (min-width: 1024px) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__element {
+    position: relative;
+    background: none;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    width: 274px;
+    text-align: left;
+    &:after {
+      content: 'Movie details';
+      font-size: 35px;
+      font-weight: 500;
+      box-sizing: border-box;
+      padding: 0 10px;
+      text-align: center;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      position: absolute;
+      top: -2.5%;
+      left: -2.5%;
+      width: 105%;
+      height: calc(398px + 7%);
+      max-width: 0;
+      max-height: 0;
+      opacity:0;
+      border-radius: 5px;
+      background-color: #ff6b01;
+      transition: opacity, max-width, max-height 350ms ease;
+    }
+    &:hover:after, &:focus:after, &:active:after {
+      opacity:.85;
+      max-width: 105%;
+      max-height: calc(398px + 7%);
+    }
+  }
+
+  &__element-img {
+    margin-bottom:10px;
+    border-radius: 5px;
+    width: 274px;
+  }
+
+  &__element-title, &__element-category, &__element-year {
+    line-height: 1.33;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  &__element-title {
+    color: #000000;
+    text-transform: uppercase;
+  }
+
+  &__element-category, &__element-year {
+    color: #FF6B08;
+  }
+
+  &__element-year::before {
+    content: ' | ';
+  }
+
+  &__element-score {
+    display: inline-block;
+    line-height: 1.17;
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff;
+    background: #FF6B08;
+    padding: 1px 6px;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+}
