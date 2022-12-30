@@ -1,1 +1,31 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// ----- MOBILE -----
+body {
+  font-family: 'Roboto', 'Raleway', sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// ----- TABLET ------
+@media screen and (min-width: 768px) {
+  body {
+  }
+}
+
+// ----- DESKTOP -----
+@media screen and (min-width: 1024px) {
+  body {
+    &--shadow {
+      box-shadow: 0px 0px 7px -2px rgb(172, 172, 175);
+    }
+  }
+}
