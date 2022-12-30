@@ -26,6 +26,7 @@
     cursor: pointer;
     width: 274px;
     text-align: left;
+
     &:after {
       content: 'Movie details';
       font-size: 35px;
@@ -44,22 +45,21 @@
       left: -2.5%;
       width: 105%;
       height: calc(398px + 7%);
-      max-width: 0;
       max-height: 0;
-      opacity:0;
+      opacity: 0;
       border-radius: 5px;
       background-color: #ff6b01;
-      transition: opacity, max-width, max-height 350ms ease;
+      transition: opacity 350ms ease, max-height 350ms ease;
     }
+
     &:hover:after, &:focus:after, &:active:after {
-      opacity:.85;
-      max-width: 105%;
+      opacity: .85;
       max-height: calc(398px + 7%);
     }
   }
 
   &__element-img {
-    margin-bottom:10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     width: 274px;
   }
