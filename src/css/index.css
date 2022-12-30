@@ -78,6 +78,12 @@
   z-index: 100;
 }
 
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
 .container-modal {
   margin-left: 20px;
   margin-right: 20px;
