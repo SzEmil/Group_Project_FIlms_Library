@@ -1,7 +1,9 @@
-@import './common';
-@import './container';
-@import './header_my_library';
-@import './grid_my_library';
-@import './home-gallery';
-@import './footer';
-@import './more-info-modal';
+@import './utils/variables';
+@import './components/common';
+@import './components/common';
+@import './components/container';
+@import './components/header_my_library';
+@import './components/grid_my_library';
+@import './components/home-gallery';
+@import './components/footer';
+@import './components/more-info-modal';
