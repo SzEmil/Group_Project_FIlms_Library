@@ -1,10 +1,9 @@
-@import './common';
-@import './container';
-@import './example';
+@import 'utils/variables';
+@import 'components/common';
+@import 'components/container';
+@import 'components/example';
 
-@import 'src/sass/header_my_library';
-@import './home-gallery';
-@import './footer';
-@import './more-info-modal';
-
-
+@import 'components/header_my_library';
+@import 'components/home-gallery';
+@import 'components/footer';
+@import 'components/more-info-modal';

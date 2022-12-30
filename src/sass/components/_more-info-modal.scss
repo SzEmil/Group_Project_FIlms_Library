@@ -1,13 +1,21 @@
 .backdrop {
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 100;
+  background-color: get-bg-color(backdrop);
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.is-hidden {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-}
+// .is-hidden {
+//   opacity: 0;
+//   pointer-events: none;
+//   visibility: hidden;
+// }
 
 .container-modal {
   margin-left: 20px;
@@ -15,9 +23,9 @@
 }
 
 .more-info-modal {
-  background-color: white;
-
-  color: black;
+  position: relative;
+  background-color: get-bg-color(basic);
+  color: get-font-color(dark-text);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -26,9 +34,10 @@
   &__close-btn {
     width: 30px;
     height: 30px;
-    background-color: white;
+    background-color: get-bg-color(basic);
     border: none;
     margin: 18px 10px 16px 240px;
+    cursor: pointer;
   }
 
   &__poster {
@@ -46,7 +55,7 @@
     &--header {
       font-size: 12px;
       line-height: 1.33;
-      color: #8c8c8c;
+      color: get-font-color(light-text);
       margin-top: 10px;
     }
 
@@ -57,15 +66,15 @@
     }
 
     &--average {
-      background-color: #ff6b01;
+      background-color: get-bg-color(leading);
       border-radius: 5px;
       padding: 1px 10px 1px 10px;
-      color: white;
+      color: get-font-color(on-leading-bg);
     }
 
     &--count {
       padding: 1px 4px 1px 4px;
-      background: #f7f7f7;
+      background: get-bg-color(footer-bg);
       border-radius: 5px;
     }
   }
@@ -108,17 +117,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 
     &--watched {
-      background-color: #ff6b01;
-      color: white;
+      background-color: get-bg-color(leading);
+      color: get-font-color(on-leading-bg);
       border: none;
       padding-left: 8px;
       padding-right: 8px;
     }
 
     &--queue {
-      background-color: white;
+      background-color: get-bg-color(basic);
     }
   }
 }
