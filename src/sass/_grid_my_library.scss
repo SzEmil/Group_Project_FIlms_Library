@@ -19,12 +19,43 @@
   }
 
   &__element {
+    position: relative;
     background: none;
     outline: 0;
     border: 0;
     cursor: pointer;
     width: 274px;
     text-align: left;
+    &:after {
+      content: 'Movie details';
+      font-size: 35px;
+      font-weight: 500;
+      box-sizing: border-box;
+      padding: 0 10px;
+      text-align: center;
+      color: #ffffff;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      position: absolute;
+      top: -2.5%;
+      left: -2.5%;
+      width: 105%;
+      height: calc(398px + 7%);
+      max-width: 0;
+      max-height: 0;
+      opacity:0;
+      border-radius: 5px;
+      background-color: #ff6b01;
+      transition: opacity, max-width, max-height 350ms ease;
+    }
+    &:hover:after, &:focus:after, &:active:after {
+      opacity:.85;
+      max-width: 105%;
+      max-height: calc(398px + 7%);
+    }
   }
 
   &__element-img {
