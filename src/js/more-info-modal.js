@@ -1,25 +1,19 @@
 'use strict';
-import { fetchVideo } from "./fetch-video";
+import { fetchVideo } from './fetch-video';
 
-const moreInfoModal = document.querySelector(".more-info-modal")
+const moreInfoModal = document.querySelector('.more-info-modal');
 
-
-
-
-
-fetchVideo("A fistful of Lead", 1)
+fetchVideo('A fistful of Lead', 1)
   .then(data => {
-    console.log(data)
+    console.log(data);
     const dataArray = data.results;
     const example = dataArray[0];
-    console.log(example)
+    console.log(example);
     renderModal(example);
   })
   .catch(error => {
-    console.error(error)
-  })
-
-
+    console.error(error);
+  });
 
 const renderModal = example => {
   const markup = `<button class="more-info-modal__close-btn">
@@ -62,7 +56,7 @@ const renderModal = example => {
         </button>
       </div>
     </div>
-  </div>`
+  </div>`;
 
   moreInfoModal.innerHTML = markup;
 };
