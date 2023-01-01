@@ -2,20 +2,11 @@
 import { fetchVideo } from './fetch-video';
 
 const moreInfoModal = document.querySelector('.more-info-modal');
+const modalSection = document.querySelector('.backdrop');
+console.log(modalSection);
 
-fetchVideo('A fistful of Lead', 1)
-  .then(data => {
-    console.log(data);
-    const dataArray = data.results;
-    const example = dataArray[0];
-    console.log(example);
-    renderModal(example);
-  })
-  .catch(error => {
-    console.error(error);
-  });
-
-const renderModal = example => {
+export const renderModal = example => {
+  modalSection.classList.remove('is-hidden');
   const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
