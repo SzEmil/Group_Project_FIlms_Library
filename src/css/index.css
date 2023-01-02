@@ -78,6 +78,7 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-mobile@1x.jpg);
   background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/my-library/header-library-background-mobile@1x.jpg);
 }
+
 @media (min-device-pixel-ratio: 2), (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi), (min-resolution: 2dppx) {
   .header-my-library__bg {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-mobile@2x.jpg);
@@ -85,35 +86,29 @@ body {
   }
 }
 @media screen and (min-width: 768px) {
-  .header-my-library {
+  .header-my-library__bg {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-tablet@1x.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/my-library/header-library-background-tablet@1x.jpg);
   }
 }
 @media screen and (min-width: 768px) and (min-device-pixel-ratio: 2), screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 768px) and (min-resolution: 192dpi), screen and (min-width: 768px) and (min-resolution: 2dppx) {
-  .header-my-library {
+  .header-my-library__bg {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-tablet@2x.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/my-library/header-library-background-tablet@2x.jpg);
   }
 }
 @media screen and (min-width: 1024px) {
-  .header-my-library {
+  .header-my-library__bg {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-desktop@1x.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/my-library/header-library-background-desktop@1x.jpg);
   }
 }
 @media screen and (min-width: 1024px) and (min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), screen and (min-width: 1024px) and (min-resolution: 192dpi), screen and (min-width: 1024px) and (min-resolution: 2dppx) {
-  .header-my-library {
+  .header-my-library__bg {
     background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.56)), to(rgba(0, 0, 0, 0.56))), url(../images/my-library/header-library-background-desktop@2x.jpg);
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url(../images/my-library/header-library-background-desktop@2x.jpg);
   }
 }
-.header-my-library__container {
-  line-height: 1.17;
-  padding-top: 41px;
-  padding-bottom: 65px;
-}
-
 .my-library-space {
   display: -webkit-box;
   display: -ms-flexbox;

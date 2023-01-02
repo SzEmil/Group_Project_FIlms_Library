@@ -2,11 +2,15 @@
   &__bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/my-library/header-library-background-mobile@1x.jpg);
+  }
+}
 
-    @media (min-device-pixel-ratio: 2),
-      (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+@media (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header-my-library {
+    &__bg {
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
@@ -14,44 +18,60 @@
         url(../images/my-library/header-library-background-mobile@2x.jpg);
     }
   }
-
-  @media screen and (min-width: 768px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/my-library/header-library-background-tablet@1x.jpg);
-
-    @media (min-device-pixel-ratio: 2),
-      (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+}
+// --- TABLET --- //
+@media screen and (min-width: 768px) {
+  .header-my-library {
+    &__bg {
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url(../images/my-library/header-library-background-tablet@2x.jpg);
+        url(../images/my-library/header-library-background-tablet@1x.jpg);
     }
   }
 
-  // ----- DESKTOP -----
-  @media screen and (min-width: 1024px) {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/my-library/header-library-background-desktop@1x.jpg);
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header-my-library {
+      &__bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url(../images/my-library/header-library-background-tablet@2x.jpg);
+      }
+    }
+  }
+}
 
-    @media (min-device-pixel-ratio: 2),
-      (-webkit-min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
+// ----- DESKTOP -----
+@media screen and (min-width: 1024px) {
+  .header-my-library {
+    &__bg {
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
         ),
-        url(../images/my-library/header-library-background-desktop@2x.jpg);
+        url(../images/my-library/header-library-background-desktop@1x.jpg);
     }
   }
 
-  &__container {
-    line-height: 1.17;
-    padding-top: 41px;
-    padding-bottom: 65px;
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header-my-library {
+      &__bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url(../images/my-library/header-library-background-desktop@2x.jpg);
+      }
+    }
   }
 }
 
