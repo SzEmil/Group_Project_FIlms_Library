@@ -7,8 +7,10 @@ import { renderModal } from './more-info-modal';
 
 const form = document.querySelector('#search-form');
 const gallery = document.querySelector('.home-gallery');
+const paginationBtns = document.querySelectorAll('.pag-btns__btn');
+const nextBtn = document.querySelector('.pag-btns__arrow--next');
+const prevBtn = document.querySelector('.pag-btns__arrow--prev');
 let pageNumber = 1;
-let videoId = 0;
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -41,13 +43,48 @@ const renderVideoCard = videoArray => {
     });
 };
 
+// funkcja sprawdzająca ilość wyszukanych elementów oraz stron
+const checkResult = totalResults => {
+  const totalPages = Math.ceil(totalResults / 20);
+
+  if (totalResults === 0) {
+    // tutaj usuwam klase is-hidden w komentarzu wrzuconym do hedera przez Olgę, że nie znaleziono filmów
+  }
+
+  if (pageNumber === 1) {
+    // tutaj muszę zablokować przycisk strzałki wstecz
+  } else if (pageNumber === totalPages && totalPages !== 1) {
+    // tutaj muszę zablokować przycisk nasępnej strony
+  }
+
+  if (totalPages === 1) {
+    // tutaj muszę odlokować 1 przycisk
+  } else if (totalPages === 2) {
+    // tutaj musze odblokować 2 przyciski i strzałki
+  } else if (totalPages === 3) {
+    // tutaj muszę odblokować 3 przyciski
+  } else if (totalPages === 4) {
+    // tutaj muszę odblokować 4 przyciski
+  } else if (totalPages === 5) {
+    // tutaj muszę odblokować 5 przycisków
+  } else if (totalPages === 6) {
+    // tutaj muszę odblokować 6 przyciskOw
+  } else if (totalPages === 7) {
+    // tutaj muszę odblokować 7 przyciskOw
+  } else if (totalPages > 7) {
+    // for (let i = 1; i < 8; i++) {
+    //   paginationBtns[i].textContent = i + 1;
+    // }
+  }
+};
+
 // obsługa zapytania o najpopularniejsze filmy
 const loadPopularMovies = event => {
   gallery.innerHTML = ``;
 
   fetchVideoPopular()
     .then(data => {
-      // console.log(data);
+      console.log(data);
       const dataArray = data.results;
       // console.log(dataArray);
       renderVideoCard(dataArray);
@@ -60,6 +97,94 @@ const loadPopularMovies = event => {
 // obsługa zapytania o film dopasowany do wartości wpisanej do input
 const searchVideo = async event => {
   event.preventDefault();
+
+  pageNumber = 1;
+
+  const {
+    elements: { searchQuery },
+  } = form;
+  const formSearch = searchQuery.value;
+  // console.log(formSearch);
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      console.log(data);
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+// obsługa paginacji
+const nextPage = async () => {
+  const {
+    elements: { searchQuery },
+  } = form;
+
+  const formSearch = searchQuery.value;
+  console.log(formSearch);
+
+  pageNumber++;
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+
+      console.log(`Wczytana strona: ${pageNumber}`);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+const prevPage = async () => {
+  const {
+    elements: { searchQuery },
+  } = form;
+
+  const formSearch = searchQuery.value;
+  console.log(formSearch);
+
+  pageNumber--;
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+      console.log(`Wczytana strona: ${pageNumber}`);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+const pageByNumber = async event => {
+  const target = event.target.closest('.pag-btns__btn');
+  if (!event.target.closest('.pag-btns__btn')) {
+    return;
+  }
+
+  pageNumber = Number(target.textContent);
+  console.log(typeof pageNumber);
 
   const {
     elements: { searchQuery },
@@ -74,9 +199,12 @@ const searchVideo = async event => {
       const dataArray = data.results;
       console.log(dataArray);
       renderVideoCard(dataArray);
-      // boject = data;
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+      console.log(`Wczytana strona: ${pageNumber}`);
     })
     .catch(error => {
+      gallery.innerHTML = ``;
       console.error(error);
     });
 };
@@ -94,10 +222,9 @@ const getDetails = event => {
     return;
   }
 
-  const test = target.getAttribute('movieid');
-  console.log(test);
+  const movieId = target.getAttribute('movieid');
 
-  fetchDetails(test)
+  fetchDetails(movieId)
     .then(data => {
       console.log(data);
       renderModal(data);
@@ -106,4 +233,9 @@ const getDetails = event => {
       console.error(error);
     });
 };
+
+// obsługa funkcjonalności na stronie
 document.addEventListener('click', getDetails);
+nextBtn.addEventListener('click', nextPage);
+prevBtn.addEventListener('click', prevPage);
+document.addEventListener('click', pageByNumber);
