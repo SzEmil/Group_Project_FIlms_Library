@@ -189,7 +189,7 @@ body {
   width: 60px;
   font-size: 15px;
   font-weight: 500;
-  color: #ffffff;
+  color: white;
 }
 
 .grid_my_library {
@@ -581,7 +581,7 @@ body {
 .backdrop {
   background-color: rgba(0, 0, 0, 0.25);
   z-index: 100;
-  position: absolute;
+  position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
@@ -610,39 +610,40 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .more-info-modal {
   position: relative;
   background-color: white;
   color: black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 .more-info-modal__close-btn {
   width: 30px;
   height: 30px;
   background-color: white;
   border: none;
-  margin: 18px 10px 16px 240px;
+  position: absolute;
+  top: 18px;
+  right: 10px;
   cursor: pointer;
 }
 .more-info-modal__poster {
+  display: block;
   width: 240px;
-  height: 356.57px;
+  height: 356.57;
   border-radius: 5px;
   margin-bottom: 30.43;
+  margin-top: 48px;
 }
 .more-info-modal__details {
   display: -webkit-box;
@@ -689,7 +690,7 @@ body {
   margin-top: 20px;
 }
 .more-info-modal__text {
-  width: 240px;
+  min-width: 240px;
   font-size: 12px;
   line-height: 1.67;
 }
@@ -701,6 +702,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 14.85;
   margin-top: 21px;
   margin-bottom: 41px;
@@ -723,6 +727,34 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  position: relative;
+  -webkit-transition-property: background-color, border, -webkit-box-shadow;
+  transition-property: background-color, border, -webkit-box-shadow;
+  transition-property: background-color, border, box-shadow;
+  transition-property: background-color, border, box-shadow, -webkit-box-shadow;
+  -webkit-transition-duration: 300ms;
+          transition-duration: 300ms;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+}
+.more-info-modal__btn.active {
+  background-color: #ff6b01;
+  border: 1px solid #ff6b01;
+}
+.more-info-modal__btn:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0;
+  border-radius: 5px;
+  background-color: #ff6b01;
+  -webkit-transition: opacity, 300ms ease;
+  transition: opacity, 300ms ease;
+}
+.more-info-modal__btn:hover:after {
+  opacity: 0.35;
 }
 .more-info-modal__btn--watched {
   background-color: #ff6b01;
@@ -747,23 +779,34 @@ body {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     gap: 32px;
   }
   .more-info-modal__close-btn {
-    margin: 10px 10px 2px 578px;
+    top: 10px;
+    right: 10px;
   }
   .more-info-modal__poster {
     width: 264px;
     height: 373.55px;
-    margin-bottom: 0px;
+    margin-bottom: 40px;
+    margin-top: 42px;
+  }
+  .more-info-modal__title {
+    margin-top: 42px;
   }
   .more-info-modal__text {
-    width: 264px;
+    min-width: 264px;
   }
   .more-info-modal__btn-box {
     gap: 14.94;
     margin-top: 20px;
     margin-bottom: 40px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .more-info-modal__btn {
     width: 125.03px;
@@ -778,21 +821,27 @@ body {
     margin-left: 30px;
     margin-right: 30px;
     gap: 30px;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   .more-info-modal {
     max-width: 882px;
   }
   .more-info-modal__close-btn {
-    margin: 10px 10px 10px 842px;
+    top: 10px;
+    right: 10px;
   }
   .more-info-modal__poster {
     width: 396px;
     height: 477.8px;
     margin-bottom: 40.2;
+    margin-top: 50px;
   }
   .more-info-modal__title {
     font-size: 30px;
     line-height: 1.17;
+    margin-top: 50px;
   }
   .more-info-modal__text {
     width: 396px;
@@ -801,6 +850,9 @@ body {
     gap: 15;
     margin-top: 21px;
     margin-bottom: 0;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .more-info-modal__btn {
     width: 136px;

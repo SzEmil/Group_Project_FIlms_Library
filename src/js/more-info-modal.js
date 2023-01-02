@@ -1,18 +1,19 @@
 'use strict';
-import { fetchVideo } from './fetch-video';
 
 const moreInfoModal = document.querySelector('.more-info-modal');
-const modalSection = document.querySelector('.backdrop');
+const modalSection = document.querySelector('[data-modal]');
+const body = document.querySelector('body')
 console.log(modalSection);
 
 export const renderModal = example => {
   modalSection.classList.remove('is-hidden');
+  modalSection.classList.add("backdrop");
   const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
   <div class="container-modal">
-    <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}" />
-    <div>
+    <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
+    <div class="more-info-modal__description">
       <h1 class="more-info-modal__title">${example.title}</h1>
       <div class="more-info-modal__details">
       <ul>
@@ -39,7 +40,7 @@ export const renderModal = example => {
         ${example.overview}
       </p>
       <div class="more-info-modal__btn-box">
-        <button class="more-info-modal__btn more-info-modal__btn--watched">
+        <button class="more-info-modal__btn active more-info-modal__btn--watched">
           ADD TO WATCHED
         </button>
         <button class="more-info-modal__btn more-info-modal__btn--queue">
@@ -50,4 +51,23 @@ export const renderModal = example => {
   </div>`;
 
   moreInfoModal.innerHTML = markup;
+  //body.style.overflow = "hidden"
 };
+
+
+modalSection.addEventListener("click", (event) => {
+  if (event.target.closest(".more-info-modal__btn-box")) {
+    return;
+  }
+
+  modalSection.classList.add("is-hidden")
+  modalSection.classList.remove("backdrop")
+  //body.style.overflow = "auto"
+})
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    modalSection.classList.add("is-hidden")
+    modalSection.classList.remove("backdrop")
+  }
+})
