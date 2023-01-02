@@ -1,0 +1,113 @@
+// --- wspólne dla obu headerów --- //
+
+.header {
+  &__background {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000000;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__container {
+    line-height: 1.17;
+    padding-top: 46px;
+    padding-bottom: 43px;
+  }
+}
+
+.nav,
+.nav__logo,
+.nav__side-nav {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.nav {
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo,
+  &__side-nav-link {
+    color: #ffffff;
+  }
+
+  &__logo {
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__logo-icon {
+    color: #818181;
+  }
+
+  &__logo-name {
+    font-size: 30px;
+    font-weight: 500;
+    visibility: hidden;
+
+    @media screen and (min-width: 768px) {
+      visibility: visible;
+    }
+
+    // ----- DESKTOP -----
+    @media screen and (min-width: 1024px) {
+      visibility: visible;
+    }
+  }
+
+  &__side-nav {
+    gap: 40px;
+  }
+
+  &__side-nav-link {
+    position: relative;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      bottom: -3px;
+      left: 0;
+      max-width: 0;
+      transition: max-width 250ms ease;
+    }
+
+    &:hover:after {
+      background-color: #ffffff;
+      max-width: 100%;
+    }
+
+    &.active::after {
+      background-color: #ff6b08;
+      max-width: 100%;
+    }
+  }
+}
+
+/* tablet */
+@media screen and (min-width: 768px) {
+  .header {
+    &__container {
+      line-height: 1.17;
+      padding-top: 41px;
+      padding-bottom: 59px;
+    }
+  }
+}
+
+/* desktop */
+
+@media screen and (min-width: 1024px) {
+  .header {
+    &__container {
+      line-height: 1.17;
+      padding-top: 41px;
+      padding-bottom: 59px;
+    }
+  }
+}
