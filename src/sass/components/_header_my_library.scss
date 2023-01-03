@@ -1,106 +1,76 @@
 .header-my-library {
   &__bg {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #000000;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-    url(../images/my-library/header-library-background-mobile@2x.jpg);
-
-    @media screen and (min-width: 768px) {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/my-library/header-library-background-tablet@2x.jpg);
-    }
-
-    // ----- DESKTOP -----
-    @media screen and (min-width: 1024px) {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
-      url(../images/my-library/header-library-background-desktop@1x.jpg);
-    }
-
-  }
-
-  &__container {
-    line-height: 1.17;
-    padding-top: 41px;
-    padding-bottom: 65px;
+      url(../images/my-library/header-library-background-mobile@1x.jpg);
   }
 }
 
-.nav,
-.nav__logo,
-.nav__side-nav {
-  display: flex;
-  flex-flow: row nowrap;
+@media (min-device-pixel-ratio: 2),
+  (-webkit-min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .header-my-library {
+    &__bg {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/my-library/header-library-background-mobile@2x.jpg);
+    }
+  }
+}
+// --- TABLET --- //
+@media screen and (min-width: 768px) {
+  .header-my-library {
+    &__bg {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/my-library/header-library-background-tablet@1x.jpg);
+    }
+  }
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header-my-library {
+      &__bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url(../images/my-library/header-library-background-tablet@2x.jpg);
+      }
+    }
+  }
 }
 
-.nav {
-  justify-content: space-between;
-  align-items: center;
-
-  &__logo,
-  &__side-nav-link {
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  &__logo {
-    gap: 10px;
-    align-items: center;
-  }
-
-  &__logo-icon {
-    color: #818181;
-  }
-
-  &__logo-name {
-    font-size: 30px;
-    font-weight: 500;
-    visibility: hidden;
-
-    @media screen and (min-width: 768px) {
-      visibility: visible;
-    }
-
-    // ----- DESKTOP -----
-    @media screen and (min-width: 1024px) {
-      visibility: visible;
+// ----- DESKTOP -----
+@media screen and (min-width: 1024px) {
+  .header-my-library {
+    &__bg {
+      background-image: linear-gradient(
+          rgba(0, 0, 0, 0.56),
+          rgba(0, 0, 0, 0.56)
+        ),
+        url(../images/my-library/header-library-background-desktop@1x.jpg);
     }
   }
 
-  &__side-nav {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    gap: 40px;
-  }
-
-  &__side-nav-link {
-    position: relative;
-    font-size: 12px;
-    text-transform: uppercase;
-
-    &::after {
-      content: '';
-      position: absolute;
-      height: 3px;
-      width: 100%;
-      bottom: -3px;
-      left: 0;
-      max-width: 0;
-      transition: max-width 250ms ease;
-    }
-
-    &:hover:after {
-      background-color: #ffffff;
-      max-width: 100%;
-    }
-
-    &.active::after {
-      background-color: #ff6b08;
-      max-width: 100%;
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi),
+    (min-resolution: 2dppx) {
+    .header-my-library {
+      &__bg {
+        background-image: linear-gradient(
+            rgba(0, 0, 0, 0.56),
+            rgba(0, 0, 0, 0.56)
+          ),
+          url(../images/my-library/header-library-background-desktop@2x.jpg);
+      }
     }
   }
 }
@@ -147,8 +117,8 @@
       content: '';
       position: absolute;
       width: 100%;
-      height:100%;
-      top:0;
+      height: 100%;
+      top: 0;
       opacity: 0;
       border-radius: 5px;
       background-color: #ff6b01;
@@ -156,7 +126,7 @@
     }
 
     &:hover:after {
-      opacity: .35;
+      opacity: 0.35;
     }
   }
 
@@ -168,4 +138,3 @@
     color: #ffffff;
   }
 }
-
