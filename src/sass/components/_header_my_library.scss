@@ -108,7 +108,7 @@
     transition-timing-function: ease;
 
     &.active {
-      background-color: #ff6b01;
+      background-color: get-bg-color(leading);
       box-shadow: 0 8px 43px rgba(255, 107, 1, 0.6);
       border: 1px solid #ff6b01;
     }
@@ -121,7 +121,7 @@
       top: 0;
       opacity: 0;
       border-radius: 5px;
-      background-color: #ff6b01;
+      background-color: get-bg-color(leading);
       transition: opacity, 300ms ease;
     }
 
@@ -135,6 +135,6 @@
     width: 60px;
     font-size: 15px;
     font-weight: 500;
-    color: #ffffff;
+    color: get-font-color(on-leading-bg);
   }
 }

@@ -1,18 +1,23 @@
 'use strict';
-import { populateSection } from './my-library';
+
 
 const moreInfoModal = document.querySelector('.more-info-modal');
-const modalSection = document.querySelector('.backdrop');
+const modalSection = document.querySelector('[data-modal]');
+const body = document.querySelector('body')
+
 
 export const renderModal = example => {
-  const markup = `<button class='more-info-modal__close-btn'>
+  modalSection.classList.remove('is-hidden');
+  modalSection.classList.add("backdrop");
+  const parsedGenres = example.genres.map(genre => genre.name).join(', ');
+  const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
-  <div class='container-modal'>
-    <img class='more-info-modal__poster' src='https://image.tmdb.org/t/p/w300${example.poster_path}' />
-    <div>
-      <h1 class='more-info-modal__title'>${example.title}</h1>
-      <div class='more-info-modal__details'>
+  <div class="container-modal">
+    <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
+    <div class="more-info-modal__description">
+      <h1 class="more-info-modal__title">${example.title}</h1>
+      <div class="more-info-modal__details">
       <ul>
       <li class='more-info-modal__details--header'>Vote/Votes</li>
       <li class='more-info-modal__details--header'>Popularity</li>
@@ -26,9 +31,10 @@ export const renderModal = example => {
       /
       <span class='more-info-modal__details--count'>${example.vote_count}</span>
       </li>
-      <li class='more-info-modal__details--text'>${example.popularity}</li>
-      <li class='more-info-modal__details--text'>${example.original_title}</li>
-      <li class='more-info-modal__details--text'>${example.genre_ids}</li>
+
+      <li class="more-info-modal__details--text">${example.popularity}</li>
+      <li class="more-info-modal__details--text">${example.original_title}</li>
+      <li class="more-info-modal__details--text">${parsedGenres}</li>
       </ul>
       </div>
 
@@ -36,8 +42,10 @@ export const renderModal = example => {
       <p class='more-info-modal__text'>
         ${example.overview}
       </p>
-      <div class='more-info-modal__btn-box'>
-        <button id='${LOCAL_STORAGE_WATCHED_KEY}' class='more-info-modal__btn'>
+
+      <div class="more-info-modal__btn-box">
+        <button class="more-info-modal__btn active more-info-modal__btn--watched">
+          ADD TO WATCHED
         </button>
         <button id='${LOCAL_STORAGE_QUEUE_KEY}' class='more-info-modal__btn'>
         </button>
@@ -46,6 +54,28 @@ export const renderModal = example => {
   </div>`;
 
   moreInfoModal.innerHTML = markup;
+
+  body.style.overflow = "hidden"
+};
+
+
+modalSection.addEventListener("click", (event) => {
+  if (event.target.closest(".more-info-modal__btn-box")) {
+    return;
+  }
+
+  modalSection.classList.add("is-hidden")
+  modalSection.classList.remove("backdrop")
+  body.style.overflow = "auto"
+})
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    modalSection.classList.add("is-hidden")
+    modalSection.classList.remove("backdrop")
+  }
+})
+
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
@@ -156,3 +186,4 @@ function removeMovieFromSelectedStorage(localStorageId, movieId) {
   localStorage.setItem(localStorageId, JSON.stringify([...newArray]));
   toggleButtonsInStorageIndicator(movieId);
 }
+
