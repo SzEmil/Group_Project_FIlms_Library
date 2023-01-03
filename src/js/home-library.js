@@ -5,7 +5,8 @@ import { fetchDetails } from './fetch-video';
 import { fetchGenres } from './fetch-video';
 import { renderModal } from './more-info-modal';
 
-const form = document.querySelector('#search-form');
+// const form = document.querySelector('#search-form');
+const form = document.querySelector('#header-search-form');
 const gallery = document.querySelector('.home-gallery');
 let pageNumber = 1;
 let videoId = 0;
