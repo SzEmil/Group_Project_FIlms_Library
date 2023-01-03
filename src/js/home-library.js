@@ -1,4 +1,4 @@
-('use strict');
+'use strict';
 import { fetchVideo } from './fetch-video';
 import { fetchVideoPopular } from './fetch-video';
 import { fetchDetails } from './fetch-video';
@@ -31,7 +31,7 @@ const renderVideoCard = videoArray => {
         const genres = arrGenres.join(', ');
 
         const card = document.createElement('div');
-        card.innerHTML = `<div class = "home-gallery__card" movieid = "${video.id}"><img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><h3 class= "home-gallery-title">${video.title}</h3><p class = "home-gallery-link">${genres} | ${movieYear[0]}</p></div>`;
+        card.innerHTML = `<div class = "home-gallery__card" movieid="${video.id}"><img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><h3 class= "home-gallery-title">${video.title}</h3><p class = "home-gallery-link">${genres} | ${movieYear[0]}</p></div>`;
 
         gallery.appendChild(card);
       });
