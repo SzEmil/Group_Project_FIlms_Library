@@ -44,7 +44,7 @@
 
   &__poster {
     width: 240px;
-    height: 356.57px;
+    height: auto;
     border-radius: 5px;
     margin-bottom: 30.43;
   }
@@ -94,6 +94,7 @@
     margin-bottom: 10px;
     margin-top: 20px;
   }
+
   &__text {
     width: 240px;
     font-size: 12px;
@@ -115,13 +116,19 @@
     height: 44px;
     border-width: 1px;
     border-radius: 5px;
+    border-color: get-font-color(dark-text);
+    color: get-font-color(dark-text);
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    background-color: get-bg-color(basic);
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+    transition-property: background-color, border, color;
 
-    &--watched {
+    &.in-storage {
       background-color: get-bg-color(leading);
       color: get-font-color(on-leading-bg);
       border: none;
@@ -129,9 +136,6 @@
       padding-right: 8px;
     }
 
-    &--queue {
-      background-color: get-bg-color(basic);
-    }
   }
 }
 
@@ -151,7 +155,7 @@
 
     &__poster {
       width: 264px;
-      height: 373.55px;
+      height: auto;
       margin-bottom: 0px;
     }
 
@@ -192,7 +196,7 @@
 
     &__poster {
       width: 396px;
-      height: 477.8px;
+      height: auto;
       margin-bottom: 40.2;
     }
 
