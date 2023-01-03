@@ -2,7 +2,7 @@
 
 const moreInfoModal = document.querySelector('.more-info-modal');
 const modalSection = document.querySelector('[data-modal]');
-//const body = document.querySelector('body')
+const body = document.querySelector('body')
 
 
 export const renderModal = example => {
@@ -52,7 +52,7 @@ export const renderModal = example => {
   </div>`;
 
   moreInfoModal.innerHTML = markup;
-  //body.style.overflow = "hidden"
+  body.style.overflow = "hidden"
 };
 
 
@@ -63,7 +63,7 @@ modalSection.addEventListener("click", (event) => {
 
   modalSection.classList.add("is-hidden")
   modalSection.classList.remove("backdrop")
-  //body.style.overflow = "auto"
+  body.style.overflow = "auto"
 })
 
 document.addEventListener("keydown", (event) => {
