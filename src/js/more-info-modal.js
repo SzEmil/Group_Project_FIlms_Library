@@ -56,6 +56,9 @@ export const renderModal = example => {
   moreInfoModal.innerHTML = markup;
 
   body.style.overflow = "hidden"
+  toggleButtonsInStorageIndicator(example.id);
+  initModalListeners(example);
+  modalSection.classList.remove('is-hidden');
 };
 
 
@@ -76,10 +79,6 @@ document.addEventListener("keydown", (event) => {
   }
 })
 
-  toggleButtonsInStorageIndicator(example.id);
-  initModalListeners(example);
-  modalSection.classList.remove('is-hidden');
-};
 
 //create localStorage//
 const LOCAL_STORAGE_WATCHED_KEY = 'filmoteka-watched';
