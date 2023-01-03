@@ -9,7 +9,6 @@ export const renderModal = example => {
   modalSection.classList.remove('is-hidden');
   modalSection.classList.add("backdrop");
   const parsedGenres = example.genres.map(genre => genre.name).join(', ');
-  console.log(parsedGenres)
   const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
