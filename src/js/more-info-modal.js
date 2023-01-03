@@ -45,8 +45,7 @@ export const renderModal = example => {
       </p>
 
       <div class="more-info-modal__btn-box">
-        <button class="more-info-modal__btn active more-info-modal__btn--watched">
-          ADD TO WATCHED
+        <button id='${LOCAL_STORAGE_WATCHED_KEY}' class='more-info-modal__btn'>
         </button>
         <button id='${LOCAL_STORAGE_QUEUE_KEY}' class='more-info-modal__btn'>
         </button>
