@@ -2,12 +2,14 @@
 
 const moreInfoModal = document.querySelector('.more-info-modal');
 const modalSection = document.querySelector('[data-modal]');
-const body = document.querySelector('body')
-console.log(modalSection);
+//const body = document.querySelector('body')
+
 
 export const renderModal = example => {
   modalSection.classList.remove('is-hidden');
   modalSection.classList.add("backdrop");
+  const parsedGenres = example.genres.map(genre => genre.name).join(', ');
+  console.log(parsedGenres)
   const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
@@ -31,7 +33,7 @@ export const renderModal = example => {
       </li>
       <li class="more-info-modal__details--text">${example.popularity}</li>
       <li class="more-info-modal__details--text">${example.original_title}</li>
-      <li class="more-info-modal__details--text">${example.genre_ids}</li>
+      <li class="more-info-modal__details--text">${parsedGenres}</li>
       </ul>
       </div>
       
