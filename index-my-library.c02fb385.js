@@ -1,2 +1,0 @@
-var ACTIVE_SECTION_CLASS="active",sectionButtons=document.querySelectorAll(".my-library-space__btn"),activeSection=null;null==sectionButtons||sectionButtons.forEach((function(t){return t.addEventListener("click",(function(t){sectionButtons.forEach((function(t){return t.classList.remove(ACTIVE_SECTION_CLASS)})),t.target.classList.add(ACTIVE_SECTION_CLASS)}))}));
-//# sourceMappingURL=index-my-library.c02fb385.js.map
