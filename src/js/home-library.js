@@ -10,7 +10,11 @@ const gallery = document.querySelector('.home-gallery');
 const paginationBtns = document.querySelectorAll('.pag-btns__btn');
 const nextBtn = document.querySelector('.pag-btns__arrow--next');
 const prevBtn = document.querySelector('.pag-btns__arrow--prev');
+const dots = document.querySelectorAll('.pag-btns__dots');
 let pageNumber = 1;
+
+console.log(paginationBtns);
+console.log(typeof paginationBtns);
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -43,38 +47,95 @@ const renderVideoCard = videoArray => {
     });
 };
 
-// funkcja sprawdzająca ilość wyszukanych elementów oraz stron
+// funkcja sprawdzająca ilość wyszukanych elementów oraz stron i obsługująca widoczność przycisków do przewijania stron
 const checkResult = totalResults => {
   const totalPages = Math.ceil(totalResults / 20);
 
+  for (let i = 0; i <= 6; i++) {
+    paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+  }
+  nextBtn.classList.add('pag-btns__arrow--is-hidden');
+  prevBtn.classList.add('pag-btns__arrow--is-hidden');
+  dots[0].classList.add('pag-btns__dots--is-hidden');
+  dots[1].classList.add('pag-btns__dots--is-hidden');
+
+  nextBtn.disabled = false;
+  prevBtn.disabled = false;
+
   if (totalResults === 0) {
     // tutaj usuwam klase is-hidden w komentarzu wrzuconym do hedera przez Olgę, że nie znaleziono filmów
+    return;
   }
 
-  if (pageNumber === 1) {
-    // tutaj muszę zablokować przycisk strzałki wstecz
-  } else if (pageNumber === totalPages && totalPages !== 1) {
-    // tutaj muszę zablokować przycisk nasępnej strony
-  }
+  paginationBtns.forEach(btn => {
+    if (Number(btn.textContent) !== pageNumber) {
+      // btn.classList.remove('.pag-btns__btn--active');
+      btn.style.backgroundColor = 'transparent';
+      console.log('remove');
+    }
+    if (Number(btn.textContent) === pageNumber) {
+      // btn.classList.add('.pag-btns__btn--active');
+      btn.style.backgroundColor = 'orange';
+      console.log('add');
+    }
+  });
 
   if (totalPages === 1) {
-    // tutaj muszę odlokować 1 przycisk
+    paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
+    paginationBtns[0].disabled = true;
+    // tutaj można jeszcze usunąć cursor pointer
   } else if (totalPages === 2) {
-    // tutaj musze odblokować 2 przyciski i strzałki
+    paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
+    paginationBtns[1].classList.remove('pag-btns__btn--is-hidden');
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages === 3) {
-    // tutaj muszę odblokować 3 przyciski
+    for (let i = 0; i <= 2; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages === 4) {
-    // tutaj muszę odblokować 4 przyciski
+    for (let i = 0; i <= 3; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages === 5) {
-    // tutaj muszę odblokować 5 przycisków
+    for (let i = 0; i <= 4; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages === 6) {
-    // tutaj muszę odblokować 6 przyciskOw
+    for (let i = 0; i <= 5; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages === 7) {
-    // tutaj muszę odblokować 7 przyciskOw
+    for (let i = 0; i <= 6; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
   } else if (totalPages > 7) {
-    // for (let i = 1; i < 8; i++) {
-    //   paginationBtns[i].textContent = i + 1;
-    // }
+    dots[0].classList.remove('pag-btns__dots--is-hidden');
+    dots[1].classList.remove('pag-btns__dots--is-hidden');
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+    for (let i = 0; i <= 6; i++) {
+      paginationBtns[i].classList.remove('pag-btns__btn--is-hidden');
+    }
+    paginationBtns[6].textContent = totalPages;
+  }
+
+  //  funkcjonalność do zmiany numerów strony
+
+  if (pageNumber === 1 && totalPages !== 1) {
+    prevBtn.disabled = true;
+  } else if (pageNumber === totalPages && totalPages !== 1) {
+    nextBtn.disabled = true;
   }
 };
 
