@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filmoteka- Login in</title>
+    <link rel="stylesheet" href="./sass/index.scss" />
+    <!-- <link rel="stylesheet" href="/src/css/index.css" /> -->
+    <script type="module" src="./index.js"></script>
+
+    <!-- links to fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <form class="form-firebase">
+      <h2 class="form-firebase__title">Registration</h2>
+      <div class="form-firebase__field">
+        <label for="register-username" class="form-firebase__label"
+          >Username</label
+        >
+        <input
+          type="text"
+          id="register-username"
+          class="form-firebase__input"
+          placeholder="Wprowadź swój username"
+          required
+        />
+      </div>
+      <div class="form-firebase__field">
+        <label for="register-email" class="form-firebase__label">Email</label>
+        <input
+          type="email"
+          id="register-email"
+          class="form-firebase__input"
+          placeholder="Wprowadź swój adres email"
+          required
+        />
+      </div>
+      <div class="form-firebase__field">
+        <label for="register-password" class="form-firebase__label"
+          >Password</label
+        >
+        <input
+          type="password"
+          id="register-password"
+          class="form-firebase__input"
+          placeholder="Wprowadź swoje hasło"
+          required
+        />
+      </div>
+      <button class="form-firebase__button">Register</button>
+    </form>
+  </body>
+</html>

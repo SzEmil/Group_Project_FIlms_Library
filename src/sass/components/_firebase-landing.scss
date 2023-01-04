@@ -1,0 +1,47 @@
+.form-firebase {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-firebase__title {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.form-firebase__field {
+  margin-bottom: 20px;
+}
+
+.form-firebase__label {
+  display: block;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.form-firebase__input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form-firebase__button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #00bcd4;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.form-firebase__button:hover {
+  background-color: #0095a8;
+}
