@@ -1,12 +1,14 @@
 'use strict';
 
 import { populateSection } from './my-library';
-const moreInfoModal = document.querySelector('.more-info-modal');
-const modalSection = document.querySelector('[data-modal-video]');
-const body = document.querySelector('body');
+let moreInfoModal = document.querySelector('.more-info-modal');
+let modalSection = document.querySelector('[data-modal-video]');
+// let body = document.querySelector('body');
 
 export const renderModal = example => {
-
+  moreInfoModal = document.querySelector('.more-info-modal');
+  modalSection = document.querySelector('[data-modal-video]');
+  // body = document.querySelector('body');
 
   modalSection.classList.remove('is-hidden');
   modalSection.classList.add('backdrop');
@@ -56,21 +58,21 @@ export const renderModal = example => {
 
   moreInfoModal.innerHTML = markup;
 
-  body.style.overflow = 'hidden';
+  // body.style.overflow = 'hidden';
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
 };
 
-modalSection.addEventListener('click', event => {
-  if (event.target.closest('.more-info-modal__btn-box')) {
-    return;
-  }
+// modalSection.addEventListener('click', event => {
+//   if (event.target.closest('.more-info-modal__btn-box')) {
+//     return;
+//   }
 
-  modalSection.classList.add('is-hidden');
-  modalSection.classList.remove('backdrop');
-  body.style.overflow = 'auto';
-});
+//   modalSection.classList.add('is-hidden');
+//   modalSection.classList.remove('backdrop');
+//   body.style.overflow = 'auto';
+// });
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {

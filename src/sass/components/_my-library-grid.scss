@@ -8,6 +8,7 @@
     gap: 30px;
     list-style: none;
     justify-content: center;
+    transition: opacity 300ms ease;
     @media screen and (min-width: 768px) {
       justify-content: flex-start;
     }
@@ -15,6 +16,10 @@
     // ----- DESKTOP -----
     @media screen and (min-width: 1024px) {
       justify-content: flex-start;
+    }
+
+    &.hidden {
+      opacity:0;
     }
   }
 
@@ -62,6 +67,8 @@
     margin-bottom: 10px;
     border-radius: 5px;
     width: 274px;
+    height: 410px;
+    object-fit: cover;
   }
 
   &__element-title, &__element-category, &__element-year {
@@ -93,5 +100,70 @@
     padding: 1px 6px;
     box-sizing: border-box;
     border-radius: 5px;
+  }
+
+  &__element-empty {
+    position: relative;
+    width: 100%;
+
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      left: 0;
+      top: 15%;
+      height: 70%;
+      background-color: transparentize(#ff6b0a, .3);
+      z-index: 1;
+    }
+  }
+
+  &__element-empty-img {
+    position: relative;
+    z-index: 2;
+    background: url('../images/my-library/my-library-empty-state.png') no-repeat 0 100% / contain;
+    width: 411px;
+    height: 373px;
+    max-width: 100%;
+  }
+
+  &__element-empty-txt {
+    position: relative;
+    z-index: 3;
+    right: 0;
+    top: 0;
+    font-size: 35px;
+    font-weight: 300;
+    transform: rotate(5deg) scale(.9);
+    background-color: #ffffff;
+    box-sizing: border-box;
+    padding: 30px;
+    user-select: none;
+    margin-bottom: 20px;
+
+    @media screen and (min-width: 768px) {
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin-bottom: unset;
+      transform: rotate(5deg) scale(.8);
+    }
+
+    // ----- DESKTOP -----
+    @media screen and (min-width: 1024px) {
+      position: absolute;
+      right: 5%;
+      top: 5%;
+      margin-bottom: unset;
+      transform: rotate(5deg) scale(1);
+    }
+    strong {
+      text-decoration: underline;
+      color: #ff6b0a;
+      font-weight: 700;
+      font-size: 45px;
+      right: 5%;
+      top: 5%;
+    }
   }
 }
