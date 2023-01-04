@@ -8,8 +8,14 @@ import { renderModal } from './more-info-modal';
 // const form = document.querySelector('#search-form');
 const form = document.querySelector('#header-search-form');
 const gallery = document.querySelector('.home-gallery');
+const paginationBtns = document.querySelectorAll('.pag-btns__btn');
+const nextBtn = document.querySelector('.pag-btns__arrow--next');
+const prevBtn = document.querySelector('.pag-btns__arrow--prev');
+const dots = document.querySelectorAll('.pag-btns__dots');
 let pageNumber = 1;
-let videoId = 0;
+
+console.log(paginationBtns);
+console.log(typeof paginationBtns);
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -42,13 +48,105 @@ const renderVideoCard = videoArray => {
     });
 };
 
+// funkcja sprawdzająca ilość wyszukanych elementów oraz stron i obsługująca widoczność przycisków do przewijania stron
+const checkResult = totalResults => {
+  const totalPages = Math.ceil(totalResults / 20);
+
+  for (let i = 0; i <= 6; i++) {
+    paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+  }
+  nextBtn.classList.add('pag-btns__arrow--is-hidden');
+  prevBtn.classList.add('pag-btns__arrow--is-hidden');
+  dots[0].classList.add('pag-btns__dots--is-hidden');
+  dots[1].classList.add('pag-btns__dots--is-hidden');
+
+  nextBtn.disabled = false;
+  prevBtn.disabled = false;
+
+  if (totalResults === 0) {
+    // tutaj usuwam klase is-hidden w komentarzu wrzuconym do hedera przez Olgę, że nie znaleziono filmów
+    return;
+  }
+
+  paginationBtns.forEach(btn => {
+    if (Number(btn.textContent) !== pageNumber) {
+      // btn.classList.remove('.pag-btns__btn--active');
+      btn.style.backgroundColor = 'transparent';
+      console.log('remove');
+    }
+    if (Number(btn.textContent) === pageNumber) {
+      // btn.classList.add('.pag-btns__btn--active');
+      btn.style.backgroundColor = 'orange';
+      console.log('add');
+    }
+  });
+
+  if (totalPages === 1) {
+    paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
+    paginationBtns[0].disabled = true;
+    // tutaj można jeszcze usunąć cursor pointer
+  } else if (totalPages === 2) {
+    paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
+    paginationBtns[1].classList.remove('pag-btns__btn--is-hidden');
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages === 3) {
+    for (let i = 0; i <= 2; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages === 4) {
+    for (let i = 0; i <= 3; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages === 5) {
+    for (let i = 0; i <= 4; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages === 6) {
+    for (let i = 0; i <= 5; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages === 7) {
+    for (let i = 0; i <= 6; i++) {
+      paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
+    }
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+  } else if (totalPages > 7) {
+    dots[0].classList.remove('pag-btns__dots--is-hidden');
+    dots[1].classList.remove('pag-btns__dots--is-hidden');
+    nextBtn.classList.remove('pag-btns__arrow--is-hidden');
+    prevBtn.classList.remove('pag-btns__arrow--is-hidden');
+    for (let i = 0; i <= 6; i++) {
+      paginationBtns[i].classList.remove('pag-btns__btn--is-hidden');
+    }
+    paginationBtns[6].textContent = totalPages;
+  }
+
+  //  funkcjonalność do zmiany numerów strony
+
+  if (pageNumber === 1 && totalPages !== 1) {
+    prevBtn.disabled = true;
+  } else if (pageNumber === totalPages && totalPages !== 1) {
+    nextBtn.disabled = true;
+  }
+};
+
 // obsługa zapytania o najpopularniejsze filmy
 const loadPopularMovies = event => {
   gallery.innerHTML = ``;
 
   fetchVideoPopular()
     .then(data => {
-      // console.log(data);
+      console.log(data);
       const dataArray = data.results;
       // console.log(dataArray);
       renderVideoCard(dataArray);
@@ -61,6 +159,94 @@ const loadPopularMovies = event => {
 // obsługa zapytania o film dopasowany do wartości wpisanej do input
 const searchVideo = async event => {
   event.preventDefault();
+
+  pageNumber = 1;
+
+  const {
+    elements: { searchQuery },
+  } = form;
+  const formSearch = searchQuery.value;
+  // console.log(formSearch);
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      console.log(data);
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+// obsługa paginacji
+const nextPage = async () => {
+  const {
+    elements: { searchQuery },
+  } = form;
+
+  const formSearch = searchQuery.value;
+  console.log(formSearch);
+
+  pageNumber++;
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+
+      console.log(`Wczytana strona: ${pageNumber}`);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+const prevPage = async () => {
+  const {
+    elements: { searchQuery },
+  } = form;
+
+  const formSearch = searchQuery.value;
+  console.log(formSearch);
+
+  pageNumber--;
+
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      console.log(dataArray);
+      renderVideoCard(dataArray);
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+      console.log(`Wczytana strona: ${pageNumber}`);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+
+const pageByNumber = async event => {
+  const target = event.target.closest('.pag-btns__btn');
+  if (!event.target.closest('.pag-btns__btn')) {
+    return;
+  }
+
+  pageNumber = Number(target.textContent);
+  console.log(typeof pageNumber);
 
   const {
     elements: { searchQuery },
@@ -75,9 +261,12 @@ const searchVideo = async event => {
       const dataArray = data.results;
       console.log(dataArray);
       renderVideoCard(dataArray);
-      // boject = data;
+      const totalResults = data.total_results;
+      checkResult(totalResults);
+      console.log(`Wczytana strona: ${pageNumber}`);
     })
     .catch(error => {
+      gallery.innerHTML = ``;
       console.error(error);
     });
 };
@@ -95,10 +284,9 @@ const getDetails = event => {
     return;
   }
 
-  const test = target.getAttribute('movieid');
-  console.log(test);
+  const movieId = target.getAttribute('movieid');
 
-  fetchDetails(test)
+  fetchDetails(movieId)
     .then(data => {
       console.log(data);
       renderModal(data);
@@ -107,4 +295,9 @@ const getDetails = event => {
       console.error(error);
     });
 };
+
+// obsługa funkcjonalności na stronie
 document.addEventListener('click', getDetails);
+nextBtn.addEventListener('click', nextPage);
+prevBtn.addEventListener('click', prevPage);
+document.addEventListener('click', pageByNumber);
