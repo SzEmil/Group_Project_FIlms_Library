@@ -1,3 +1,14 @@
+.form-box {
+  display: flex;
+}
+.form-firebase-login {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 .form-firebase {
   max-width: 300px;
   margin: 0 auto;
@@ -43,5 +54,10 @@
 }
 
 .form-firebase__button:hover {
+  background-color: #0095a8;
+}
+
+.sign-out-Btn {
+  padding: 10px;
   background-color: #0095a8;
 }

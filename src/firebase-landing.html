@@ -6,7 +6,6 @@
     <title>Filmoteka- Login in</title>
     <link rel="stylesheet" href="./sass/index.scss" />
     <!-- <link rel="stylesheet" href="/src/css/index.css" /> -->
-    <script type="module" src="./index.js"></script>
 
     <!-- links to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,43 +16,103 @@
     />
   </head>
   <body>
-    <form class="form-firebase">
-      <h2 class="form-firebase__title">Registration</h2>
-      <div class="form-firebase__field">
-        <label for="register-username" class="form-firebase__label"
-          >Username</label
+    <div class="form-box">
+      <form class="form-firebase-login">
+        <h2 class="form-firebase__title">Log in</h2>
+
+        <div class="form-firebase__field">
+          <label for="register-email" class="form-firebase__label">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="register-email"
+            class="form-firebase__input"
+            placeholder="Wprowadź swój adres email"
+            required
+          />
+        </div>
+        <div class="form-firebase__field">
+          <label for="register-password" class="form-firebase__label"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="register-password"
+            class="form-firebase__input"
+            placeholder="Wprowadź swoje hasło"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          id="firebase-submit"
+          class="form-firebase__button"
         >
-        <input
-          type="text"
-          id="register-username"
-          class="form-firebase__input"
-          placeholder="Wprowadź swój username"
-          required
-        />
-      </div>
-      <div class="form-firebase__field">
-        <label for="register-email" class="form-firebase__label">Email</label>
-        <input
-          type="email"
-          id="register-email"
-          class="form-firebase__input"
-          placeholder="Wprowadź swój adres email"
-          required
-        />
-      </div>
-      <div class="form-firebase__field">
-        <label for="register-password" class="form-firebase__label"
-          >Password</label
+          Log in
+        </button>
+      </form>
+
+      <form class="form-firebase">
+        <h2 class="form-firebase__title">Registration</h2>
+        <div class="form-firebase__field">
+          <label for="register-username" class="form-firebase__label"
+            >Username</label
+          >
+          <input
+            type="text"
+            name="username"
+            id="register-username"
+            class="form-firebase__input"
+            placeholder="Wprowadź swój username"
+            required
+          />
+        </div>
+        <div class="form-firebase__field">
+          <label for="register-email" class="form-firebase__label">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="register-email"
+            class="form-firebase__input"
+            placeholder="Wprowadź swój adres email"
+            required
+          />
+        </div>
+        <div class="form-firebase__field">
+          <label for="register-password" class="form-firebase__label"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            id="register-password"
+            class="form-firebase__input"
+            placeholder="Wprowadź swoje hasło"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          id="firebase-submit"
+          class="form-firebase__button"
         >
-        <input
-          type="password"
-          id="register-password"
-          class="form-firebase__input"
-          placeholder="Wprowadź swoje hasło"
-          required
-        />
-      </div>
-      <button class="form-firebase__button">Register</button>
-    </form>
+          Register
+        </button>
+      </form>
+    </div>
+    <button type="button" class="sign-out-Btn">Sign out</button>
+    <a href="/src/index.html">Zalogowany to teraz leć na indexa</a>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css"
+    /> -->
+    <script type="module" src="/src/js/firebase.js"></script>
+    <!-- <script type="module" src="/src/js/firebaseSignIn.js"></script> -->
   </body>
 </html>
