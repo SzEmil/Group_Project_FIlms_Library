@@ -56,7 +56,7 @@ export const renderModal = example => {
 
   moreInfoModal.innerHTML = markup;
 
-  body.style.overflow = 'hidden';
+  body.classList.add('no-scroll')
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
@@ -69,7 +69,7 @@ modalSection.addEventListener('click', event => {
 
   modalSection.classList.add('is-hidden');
   modalSection.classList.remove('backdrop');
-  body.style.overflow = 'auto';
+  body.classList.remove('no-scroll')
 });
 
 document.addEventListener('keydown', event => {

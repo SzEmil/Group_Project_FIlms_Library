@@ -32,7 +32,9 @@ const renderVideoCard = videoArray => {
         const genres = arrGenres.join(', ');
 
         const card = document.createElement('div');
-        card.innerHTML = `<div class = "home-gallery__card" movieid="${video.id}"><img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><h3 class= "home-gallery-title">${video.title}</h3><p class = "home-gallery-link">${genres} | ${movieYear[0]}</p></div>`;
+        card.classList.add("home-gallery__card");
+        card.setAttribute("movieid", video.id);
+        card.innerHTML = `<img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><h3 class= "home-gallery__title">${video.title}</h3><p class = "home-gallery__details">${genres} | ${movieYear[0]}</p>`;
 
         gallery.appendChild(card);
       });
