@@ -1,22 +1,6 @@
 .no-scroll {
-  overflow-y: hidden;
-}
-
-.container-modal-outside {
-  //overflow: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.backdrop {
-  background-color: rgba(0, 0, 0, 0.25);
-  z-index: 100;
   position: fixed;
-  top: 0;
-  left: 0;
-
-  //overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .is-hidden {
@@ -26,6 +10,29 @@
   display: none;
 }
 
+.is-hidden {
+  .more-info-modal {
+    transform: scale(0.5);
+  }
+}
+
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition-property: visibility, opacity;
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
+
 .container-modal {
   margin-left: 20px;
   margin-right: 20px;
@@ -33,6 +40,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 28px;
+    margin-right: 28px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  @media screen and (min-width: 1024px) {
+    margin-left: 30px;
+    margin-right: 30px;
+    gap: 30px;
+    align-items: flex-start;
+  }
 }
 
 .more-info-modal {
@@ -40,8 +62,23 @@
   background-color: get-bg-color(basic);
   color: get-font-color(dark-text);
   max-width: 100%;
-  max-height: 98vh;
+  max-height: 100vh;
   overflow: auto;
+
+  // transition: opacity;
+  // transition-delay: 117ms;
+  // transition-duration: 80ms;
+  // transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  // opacity: 1;
+
+  transition-property: transform;
+  transition-duration: 400ms;
+  transition-timing-function: linear;
+  transform: scale(1);
+
+  @media screen and (min-width: 1024px) {
+    max-width: 882px;
+  }
 
   &__close-btn {
     width: 30px;
@@ -52,17 +89,42 @@
     top: 18px;
     right: 10px;
     cursor: pointer;
+    transition-property: scale, color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      color: get-bg-color(leading);
+      cursor: pointer;
+      scale: 1.2;
+    }
+    @media screen and (min-width: 768px) {
+      top: 10px;
+      right: 10px;
+    }
+    @media screen and (min-width: 1024px) {
+      top: 10px;
+      right: 10px;
+    }
   }
 
   &__poster {
     display: block;
     max-width: 240px;
-
     height: auto;
-
     border-radius: 5px;
     margin-bottom: 30.43;
     margin-top: 48px;
+    @media screen and (min-width: 768px) {
+      width: 264px;
+      height: auto;
+      margin-bottom: 40px;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 396px;
+      height: auto;
+      margin-bottom: 40.2;
+      margin-top: 50px;
+    }
   }
 
   &__details {
@@ -102,6 +164,14 @@
     line-height: 1.15;
     margin-bottom: 10px;
     text-transform: uppercase;
+    @media screen and (min-width: 768px) {
+      margin-top: 42px;
+    }
+    @media screen and (min-width: 1024px) {
+      font-size: 30px;
+      line-height: 1.17;
+      margin-top: 50px;
+    }
   }
 
   &__subtitle {
@@ -115,6 +185,12 @@
     min-width: 240px;
     font-size: 12px;
     line-height: 1.67;
+    @media screen and (min-width: 768px) {
+      min-width: 264px;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 396px;
+    }
   }
 
   &__btn-box {
@@ -124,162 +200,89 @@
     gap: 14.85;
     margin-top: 21px;
     margin-bottom: 41px;
-  }
-
-  &__btn {
-    font-size: 12px;
-    line-height: 1.33;
-    width: 112.58px;
-    height: 44px;
-    border-width: 1px;
-    border-radius: 5px;
-    border-color: get-font-color(dark-text);
-    color: get-font-color(dark-text);
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    background-color: get-bg-color(basic);
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-    transition-property: background-color, border, color;
-
-    //animacje od Gosi:
-    position: relative;
-    transition-property: background-color, border, box-shadow;
-    transition-duration: 300ms;
-    transition-timing-function: ease;
-
-    &.active {
-      background-color: get-bg-color(leading);
-      //box-shadow: 0 8px 43px rgba(255, 107, 1, 0.6);
-      border: 1px solid #ff6b01;
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      opacity: 0;
-      border-radius: 5px;
-      background-color: #ff6b01;
-      transition: opacity, 300ms ease;
-    }
-
-    &:hover:after {
-      opacity: 0.35;
-    }
-
-    //koniec animacji od Gosi
-
-    &.in-storage {
-      background-color: get-bg-color(leading);
-      color: get-font-color(on-leading-bg);
-      border: none;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-  }
-}
-
-/* tablet */
-@media screen and (min-width: 768px) {
-  .container-modal {
-    margin-left: 28px;
-    margin-right: 28px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 32px;
-  }
-  .more-info-modal {
-    &__close-btn {
-      top: 10px;
-      right: 10px;
-    }
-
-    &__poster {
-      width: 264px;
-
-      height: auto;
-      margin-bottom: 40px;
-    }
-
-    &__title {
-      margin-top: 42px;
-    }
-    &__text {
-      min-width: 264px;
-    }
-
-    &__btn-box {
+    @media screen and (min-width: 768px) {
       gap: 14.94;
       margin-top: 20px;
       margin-bottom: 40px;
       justify-content: flex-start;
     }
-
-    &__btn {
-      width: 125.03px;
-
-      &--watched {
-        padding: 0;
-      }
-    }
-  }
-}
-
-/* desktop */
-
-@media screen and (min-width: 1024px) {
-  .container-modal {
-    margin-left: 30px;
-    margin-right: 30px;
-    gap: 30px;
-    align-items: flex-start;
-  }
-  .more-info-modal {
-    max-width: 882px;
-
-    &__close-btn {
-      top: 10px;
-      right: 10px;
-    }
-
-    &__poster {
-      width: 396px;
-      height: auto;
-      margin-bottom: 40.2;
-      margin-top: 50px;
-    }
-
-    &__title {
-      font-size: 30px;
-      line-height: 1.17;
-      margin-top: 50px;
-    }
-
-    &__text {
-      width: 396px;
-    }
-
-    &__btn-box {
+    @media screen and (min-width: 1024px) {
       gap: 15;
       margin-top: 21px;
       margin-bottom: 0;
       justify-content: flex-start;
     }
+  }
 
-    &__btn {
-      width: 136px;
+  &__btn {
+    position: relative;
+    font-size: 12px;
+    line-height: 1.33;
+    padding: 14px 8px 12px 8px;
+    border-radius: 5px;
+    border: 1px solid get-font-color(dark-text);
+    color: get-font-color(dark-text);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row nowrap;
+    cursor: pointer;
+    background-color: get-bg-color(basic);
+    overflow: hidden;
+    transition-property: border;
+    transition-duration: 500ms;
+    transition-timing-function: ease;
 
-      &--watched {
-        padding-left: 0;
-        padding-right: 0;
+    &.active {
+      background-color: get-bg-color(leading);
+      box-shadow: 0 8px 43px rgba(255, 107, 1, 0.6);
+      border: 1px solid #ff6b01;
+    }
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: -37%;
+      height: 100%;
+      width: 0;
+      background-color: #ff6b0a;
+      transform: skew(43deg);
+      transform-origin: 0 0;
+      transition-property: width;
+      transition-duration: 500ms;
+      transition-timing-function: ease;
+      z-index: 2;
+      opacity: 0.7;
+    }
+
+    &:hover {
+      border: 1px solid #ff6b0a;
+
+      &:after {
+        height: 100%;
+        width: 135%;
+        opacity: 0.7;
       }
+    }
+    @media screen and (min-width: 768px) {
+      width: 125.03px;
+      padding: 14px 9px 12px 9px;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 136px;
+      padding: 14px 10px 12px 10px;
+    }
+
+    &.in-storage {
+      background-color: get-bg-color(leading);
+      color: get-font-color(on-leading-bg);
+      border: none;
+      //pointer-events: none;
+      // &::after {
+      //   background-color: white;
+      // }
     }
   }
 }

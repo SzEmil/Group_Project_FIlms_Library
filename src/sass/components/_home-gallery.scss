@@ -23,6 +23,7 @@
   gap: 20px;
   @media screen and (min-width: 768px) {
     max-width: unset;
+    gap: 30px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -37,7 +38,8 @@
       width: 49%;
     }
     @media screen and (min-width: 1024px) {
-      width: 274px;
+      // width: 274px;
+      width: 31%;
     }
   }
   &__img {

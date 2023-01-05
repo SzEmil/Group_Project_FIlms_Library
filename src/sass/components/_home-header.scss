@@ -2,15 +2,10 @@
   &__bg {
     background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)),
       url(../images/home/header-home-mobile@1x.jpg);
-  }
-}
-
-@media (min-device-pixel-ratio: 2),
-  (-webkit-min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-  .header-home {
-    &__bg {
+    @media (min-device-pixel-ratio: 2),
+      (-webkit-min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
       background-image: linear-gradient(
           rgba(0, 0, 0, 0.56),
           rgba(0, 0, 0, 0.56)
@@ -29,6 +24,9 @@
     border-bottom: 0.5 solid white;
     min-width: 280px;
     background-color: transparent;
+    &:focus-within {
+      border-bottom: 2px solid get-bg-color(leading);
+    }
   }
   &__input {
     border: none;
@@ -38,6 +36,15 @@
   &__icon {
     width: 12px;
     height: 12px;
+    stroke: white;
+    transition-property: scale, stroke;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    &:hover {
+      stroke: get-bg-color(leading);
+      cursor: pointer;
+      scale: 1.2;
+    }
   }
   &__btn {
     background-color: transparent;
