@@ -1,6 +1,18 @@
 .form-box {
   display: flex;
 }
+.firebase_block {
+  position: absolute;
+  left: 50%;
+
+  // transform: translateX(-50%);
+}
+.firebase_modal {
+  background-color: white;
+  z-index: 100;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 .form-firebase-login {
   max-width: 300px;
   margin: 0 auto;
@@ -47,7 +59,7 @@
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background-color: #00bcd4;
+  background-color: get-bg-color(leading);
   color: #fff;
   font-size: 14px;
   cursor: pointer;

@@ -9,18 +9,30 @@
       </a>
       <ul class="nav__side-nav">
         <li class="nav__side-nav-item">
-          <a href="index.html" class="nav__side-nav-link active"> Home</a>
+          <a href="index.html" class="nav__side-nav-link active" id="home-link">
+            Home</a
+          >
         </li>
 
         <li class="nav__side-nav-item">
-          <a href="index-my-library.html" class="nav__side-nav-link">
+          <a
+            href="index-my-library.html"
+            class="nav__side-nav-link"
+            id="my-library-link"
+          >
             My library
           </a>
         </li>
-        <li>
-          <a class="nav__side-nav-item" href="/src/firebase-landing.html"
-            >Login in</a
-          >
+        <li class="nav__side-nav-item">
+          <button type="button" class="nav__side-nav-link" id="loginBtn">
+            Sign in
+          </button>
+        </li>
+
+        <li class="nav__side-nav-item">
+          <button type="button" class="nav__side-nav-link" id="sign-out-btn">
+            Sign Out
+          </button>
         </li>
       </ul>
     </nav>
