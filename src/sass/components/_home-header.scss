@@ -20,6 +20,28 @@
   }
 }
 
+#loginBtn {
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+#sign-out-btn {
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+#changeToLoginModal {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: get-bg-color(leading);
+}
+
 .header-search-form {
   margin-top: 41px;
   margin-bottom: 22px;
@@ -33,7 +55,7 @@
   &__input {
     border: none;
     background-color: transparent;
-    color: white;
+    color: #ffffff;
   }
   &__icon {
     width: 12px;
