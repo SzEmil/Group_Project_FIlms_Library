@@ -35,6 +35,12 @@
   cursor: pointer;
   display: none;
 }
+#changeToLoginModal {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: get-bg-color(leading);
+}
 
 .header-search-form {
   margin-top: 41px;

@@ -272,5 +272,3 @@ function changeToLoginModal() {
 }
 
 loginBtn.addEventListener('click', generateRegisterForm);
-
-// signoutBtn.addEventListener('click', signOutUser);
