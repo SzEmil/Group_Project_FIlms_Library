@@ -1,0 +1,59 @@
+.pag__btns {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  display: flex;
+  gap: 10px;
+}
+
+.pag-btns__btn {
+  color: get-font-color(black);
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  background-color: transparent;
+  padding: 13px;
+  margin-left: 5px;
+  cursor: pointer;
+
+  &--active {
+    color: get-font-color(on-leading-bg);
+    width: 40px;
+    height: 40px;
+    background-color: get-bg-color(leading);
+    border-radius: 5px;
+  }
+
+  &--is-hidden {
+    display: none;
+  }
+}
+
+.pag-btns__arrow {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  &--next {
+    margin-left: 5px;
+  }
+
+  &--is-hidden {
+    display: none;
+  }
+}
+
+.pag-btns__dots {
+  color: get-font-color(black);
+  text-align: center;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  background-color: transparent;
+  margin-left: 5px;
+
+  &--is-hidden {
+    display: none;
+  }
+}
