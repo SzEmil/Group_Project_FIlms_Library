@@ -46,6 +46,7 @@ const database = getDatabase(app);
 // const database = firebase.database();
 
 const saveuser = event => {
+  const formFirebase = document.querySelector('.form-firebase');
   event.preventDefault();
   const {
     elements: { username, email, password },
@@ -66,6 +67,7 @@ const saveuser = event => {
       })
         .then(() => {
           Notiflix.Notify.success('User saved!');
+          firebaseBlock.classList.remove('backdrop');
         })
         .catch(error => {
           console.error(error);
