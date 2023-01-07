@@ -1,9 +1,14 @@
-.pag__btns {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+// ----- MOBILE -----
+.pag-btns {
   display: flex;
   gap: 10px;
+  justify-content: center;
+  padding-bottom: 40px;
+
+  &__icon {
+    max-width: 16px;
+    max-height: 16px;
+  }
 }
 
 .pag-btns__btn {
@@ -17,16 +22,12 @@
   margin-left: 5px;
   cursor: pointer;
 
-  &--active {
-    color: get-font-color(on-leading-bg);
-    width: 40px;
-    height: 40px;
-    background-color: get-bg-color(leading);
-    border-radius: 5px;
-  }
-
   &--is-hidden {
     display: none;
+  }
+
+  &:hover {
+    color: get-font-color(leading);
   }
 }
 
@@ -55,5 +56,12 @@
 
   &--is-hidden {
     display: none;
+  }
+}
+
+// ----- TABLET & DESKTOP------
+@media screen and (min-width: 768px) {
+  .pag-btns {
+    padding-bottom: 60px;
   }
 }

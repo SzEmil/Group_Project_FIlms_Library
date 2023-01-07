@@ -12,10 +12,11 @@ const paginationBtns = document.querySelectorAll('.pag-btns__btn');
 const nextBtn = document.querySelector('.pag-btns__arrow--next');
 const prevBtn = document.querySelector('.pag-btns__arrow--prev');
 const dots = document.querySelectorAll('.pag-btns__dots');
+const searchErr = document.querySelector('.search-error');
 let pageNumber = 1;
 
-console.log(paginationBtns);
-console.log(typeof paginationBtns);
+// console.log(paginationBtns);
+// console.log(typeof paginationBtns);
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -62,22 +63,20 @@ const checkResult = totalResults => {
 
   nextBtn.disabled = false;
   prevBtn.disabled = false;
-
-  if (totalResults === 0) {
-    // tutaj usuwam klase is-hidden w komentarzu wrzuconym do hedera przez Olgę, że nie znaleziono filmów
-    return;
-  }
+  prevBtn.style.stroke = 'black';
+  nextBtn.style.stroke = 'black';
 
   paginationBtns.forEach(btn => {
     if (Number(btn.textContent) !== pageNumber) {
-      // btn.classList.remove('.pag-btns__btn--active');
       btn.style.backgroundColor = 'transparent';
-      console.log('remove');
+      btn.style.color = 'black';
     }
     if (Number(btn.textContent) === pageNumber) {
-      // btn.classList.add('.pag-btns__btn--active');
-      btn.style.backgroundColor = 'orange';
-      console.log('add');
+      btn.style.backgroundColor = '#ff6b08';
+      btn.style.color = 'white';
+      btn.style.borderRadius = '5px';
+      btn.style.width = '40px';
+      btn.style.height = '40px';
     }
   });
 
@@ -135,8 +134,10 @@ const checkResult = totalResults => {
 
   if (pageNumber === 1 && totalPages !== 1) {
     prevBtn.disabled = true;
+    prevBtn.style.stroke = '#8c8c8c';
   } else if (pageNumber === totalPages && totalPages !== 1) {
     nextBtn.disabled = true;
+    nextBtn.style.stroke = '#8c8c8c';
   }
 };
 
@@ -146,7 +147,7 @@ const loadPopularMovies = event => {
 
   fetchVideoPopular()
     .then(data => {
-      console.log(data);
+      // console.log(data);
       const dataArray = data.results;
       // console.log(dataArray);
       renderVideoCard(dataArray);
@@ -166,18 +167,32 @@ const searchVideo = async event => {
     elements: { searchQuery },
   } = form;
   const formSearch = searchQuery.value;
-  // console.log(formSearch);
+
+  if (formSearch === '') {
+    searchErr.classList.remove('is-hidden');
+    searchErr.textContent = 'Enter the movie name.';
+    return;
+  } else {
+    searchErr.classList.add('is-hidden');
+  }
 
   await fetchVideo(formSearch, pageNumber)
     .then(data => {
-      console.log(data);
+      const totalResults = data.total_results;
+      if (totalResults === 0) {
+        searchErr.classList.remove('is-hidden');
+        searchErr.textContent =
+          'Search result not successful. Enter the correct movie name.';
+        return;
+      }
+      // console.log(data);
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
-
-      const totalResults = data.total_results;
       checkResult(totalResults);
+
+      console.log(`Wczytana strona: ${pageNumber}`);
     })
     .catch(error => {
       gallery.innerHTML = ``;
@@ -192,7 +207,7 @@ const nextPage = async () => {
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   pageNumber++;
 
@@ -200,8 +215,18 @@ const nextPage = async () => {
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
+
+      // const { height: cardHeight } = document
+      //   .querySelector('.container')
+      //   .firstElementChild.getBoundingClientRect();
+
+      // window.scrollBy({
+      //   top: cardHeight * 2,
+      //   behavior: 'smooth',
+      // });
+
       const totalResults = data.total_results;
       checkResult(totalResults);
 
@@ -219,7 +244,7 @@ const prevPage = async () => {
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   pageNumber--;
 
@@ -227,8 +252,18 @@ const prevPage = async () => {
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
+
+      // const { height: cardHeight } = document
+      //   .querySelector('.home-gallery')
+      //   .firstElementChild.getBoundingClientRect();
+
+      // window.scrollBy({
+      //   top: cardHeight * 2,
+      //   behavior: 'smooth',
+      // });
+
       const totalResults = data.total_results;
       checkResult(totalResults);
       console.log(`Wczytana strona: ${pageNumber}`);
@@ -246,20 +281,20 @@ const pageByNumber = async event => {
   }
 
   pageNumber = Number(target.textContent);
-  console.log(typeof pageNumber);
+  // console.log(typeof pageNumber);
 
   const {
     elements: { searchQuery },
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   await fetchVideo(formSearch, pageNumber)
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
       const totalResults = data.total_results;
       checkResult(totalResults);
@@ -288,7 +323,7 @@ const getDetails = event => {
 
   fetchDetails(movieId)
     .then(data => {
-      console.log(data);
+      // console.log(data);
       renderModal(data);
     })
     .catch(error => {
