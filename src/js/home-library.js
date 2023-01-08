@@ -34,7 +34,9 @@ const renderVideoCard = videoArray => {
         const card = document.createElement('div');
         card.classList.add("home-gallery__card");
         card.setAttribute("movieid", video.id);
-        card.innerHTML = `<img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><h3 class= "home-gallery__title">${video.title}</h3><p class = "home-gallery__details">${genres} | ${movieYear[0]}</p>`;
+        card.innerHTML = `<div class="home-gallery__label">
+        <p class="home-gallery__label-text">Click for more details</p>
+      </div><img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><div class="home-gallery__signature"><h3 class= "home-gallery__title">${video.title}</h3><p class = "home-gallery__details">${genres} | ${movieYear[0]}</p></div>`;
 
         gallery.appendChild(card);
       });
