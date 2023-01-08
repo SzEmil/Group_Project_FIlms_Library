@@ -75,29 +75,22 @@ const checkResult = totalResults => {
   dots[0].classList.add('pag-btns__dots--is-hidden');
   dots[1].classList.add('pag-btns__dots--is-hidden');
 
-  nextBtn.disabled = false;
-  prevBtn.disabled = false;
-  prevBtn.style.stroke = 'black';
-  nextBtn.style.stroke = 'black';
-
+  // podświetlenie aktywnego przycisku
   paginationBtns.forEach(btn => {
     if (Number(btn.textContent) !== pageNumber) {
-      btn.style.backgroundColor = 'transparent';
-      btn.style.color = 'black';
+      btn.classList.remove('pag-btns__btn--is-active');
+      btn.disabled = false;
     }
     if (Number(btn.textContent) === pageNumber) {
-      btn.style.backgroundColor = '#ff6b08';
-      btn.style.color = 'white';
-      btn.style.borderRadius = '5px';
-      btn.style.width = '40px';
-      btn.style.height = '40px';
+      btn.classList.add('pag-btns__btn--is-active');
+      btn.disabled = true;
     }
   });
 
+  // pokazywanie przycisków w zależności od ilości stron
   if (totalPages === 1) {
     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
     paginationBtns[0].disabled = true;
-    // tutaj można jeszcze usunąć cursor pointer
   } else if (totalPages === 2) {
     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
     paginationBtns[1].classList.remove('pag-btns__btn--is-hidden');
@@ -146,12 +139,21 @@ const checkResult = totalResults => {
 
   //  funkcjonalność do zmiany numerów strony
 
+  // blokowanie strzałek do przewijania na pierwszej i ostatniej stronie
   if (pageNumber === 1 && totalPages !== 1) {
     prevBtn.disabled = true;
-    prevBtn.style.stroke = '#8c8c8c';
-  } else if (pageNumber === totalPages && totalPages !== 1) {
+    prevBtn.classList.add('pag-btns__arrow--disabled');
+  } else {
+    prevBtn.disabled = false;
+    prevBtn.classList.remove('pag-btns__arrow--disabled');
+  }
+
+  if (pageNumber === totalPages && totalPages !== 1) {
     nextBtn.disabled = true;
-    nextBtn.style.stroke = '#8c8c8c';
+    nextBtn.classList.add('pag-btns__arrow--disabled');
+  } else {
+    nextBtn.disabled = false;
+    nextBtn.classList.remove('pag-btns__arrow--disabled');
   }
 };
 
