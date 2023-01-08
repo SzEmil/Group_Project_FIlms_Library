@@ -1,4 +1,5 @@
 'use strict';
+import { Loading } from 'notiflix';
 import { fetchVideo } from './fetch-video';
 import { fetchVideoPopular } from './fetch-video';
 import { fetchDetails } from './fetch-video';
@@ -13,10 +14,23 @@ const nextBtn = document.querySelector('.pag-btns__arrow--next');
 const prevBtn = document.querySelector('.pag-btns__arrow--prev');
 const dots = document.querySelectorAll('.pag-btns__dots');
 const searchErr = document.querySelector('.search-error');
+
 let pageNumber = 1;
 
-// console.log(paginationBtns);
-// console.log(typeof paginationBtns);
+const loadingSpinner = document.createElement('div');
+loadingSpinner.classList.add('loading');
+loadingSpinner.innerHTML = '<div class="loading__spinner"></div>';
+
+// funkcja pokazująca loading spinner
+const onLoading = () => {
+  loadingSpinner.classList.remove('is-hidden');
+  gallery.appendChild(loadingSpinner);
+};
+
+// funkcja ukrywająca loading spinner
+const loadingDone = () => {
+  loadingSpinner.classList.add('is-hidden');
+};
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -145,12 +159,15 @@ const checkResult = totalResults => {
 const loadPopularMovies = event => {
   gallery.innerHTML = ``;
 
+  onLoading();
+
   fetchVideoPopular()
     .then(data => {
       // console.log(data);
       const dataArray = data.results;
       // console.log(dataArray);
       renderVideoCard(dataArray);
+      loadingDone();
     })
     .catch(error => {
       console.error(error);
@@ -160,7 +177,7 @@ const loadPopularMovies = event => {
 // obsługa zapytania o film dopasowany do wartości wpisanej do input
 const searchVideo = async event => {
   event.preventDefault();
-
+  onLoading();
   pageNumber = 1;
 
   const {
@@ -169,8 +186,9 @@ const searchVideo = async event => {
   const formSearch = searchQuery.value;
 
   if (formSearch === '') {
-    searchErr.classList.remove('is-hidden');
     searchErr.textContent = 'Enter the movie name.';
+    searchErr.classList.remove('is-hidden');
+    loadingDone();
     return;
   } else {
     searchErr.classList.add('is-hidden');
@@ -180,9 +198,10 @@ const searchVideo = async event => {
     .then(data => {
       const totalResults = data.total_results;
       if (totalResults === 0) {
-        searchErr.classList.remove('is-hidden');
         searchErr.textContent =
           'Search result not successful. Enter the correct movie name.';
+        searchErr.classList.remove('is-hidden');
+        loadingDone();
         return;
       }
       // console.log(data);
@@ -202,6 +221,8 @@ const searchVideo = async event => {
 
 // obsługa paginacji
 const nextPage = async () => {
+  onLoading();
+
   const {
     elements: { searchQuery },
   } = form;
@@ -239,6 +260,8 @@ const nextPage = async () => {
 };
 
 const prevPage = async () => {
+  onLoading();
+
   const {
     elements: { searchQuery },
   } = form;
@@ -279,6 +302,7 @@ const pageByNumber = async event => {
   if (!event.target.closest('.pag-btns__btn')) {
     return;
   }
+  onLoading();
 
   pageNumber = Number(target.textContent);
   // console.log(typeof pageNumber);
