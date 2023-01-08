@@ -9,6 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 250ms linear, visibility 250ms linear,
+    opacity 250ms linear;
 }
 
 .is-hidden {
@@ -176,7 +178,6 @@
 
     //koniec animacji od Gosi
 
-
     &.in-storage {
       background-color: get-bg-color(leading);
       color: get-font-color(on-leading-bg);
@@ -184,7 +185,6 @@
       padding-left: 8px;
       padding-right: 8px;
     }
-
   }
 }
 
@@ -210,7 +210,6 @@
 
       height: auto;
       margin-bottom: 0px;
-
     }
 
     &__title {

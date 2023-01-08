@@ -4,14 +4,31 @@
 .firebase_block {
   position: absolute;
   left: 50%;
-
   // transform: translateX(-50%);
 }
 .firebase_modal {
+  position: relative;
   background-color: white;
   z-index: 100;
   border: 1px solid #ccc;
   border-radius: 5px;
+
+  display: none;
+  transition: transform 250ms linear, visibility 250ms linear,
+    opacity 250ms linear;
+}
+.form-firebase__closeBtn {
+  background-color: transparent;
+  position: absolute;
+  border: none;
+  right: 20;
+  top: 20;
+  cursor: pointer;
+
+  transition: color 250ms linear;
+}
+.form-firebase__closeBtn:hover {
+  color: get-bg-color(leading);
 }
 .form-firebase-login {
   max-width: 300px;
@@ -28,7 +45,14 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
-
+.form-firebase__paragraph {
+  padding-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+#changeToLoginModal {
+  margin-left: 2px;
+}
 .form-firebase__title {
   margin-bottom: 20px;
   text-align: center;
@@ -72,4 +96,28 @@
 .sign-out-Btn {
   padding: 10px;
   background-color: #0095a8;
+}
+
+.firebase_modal.fade-in {
+  animation: fadeIn 0.5s;
+  // transition: opacity 250ms linear;
+}
+.firebase_modal.fade-out {
+  animation: fadeOut 0.5s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }

@@ -23,6 +23,18 @@ const firebaseBlock = document.querySelector('.firebase_block');
 firebaseBlock.style.top = windowHeight / 2 + 'px';
 firebaseBlock.style.transform = 'translateY(-50%)';
 
+const modalDiv = document.querySelector('.firebase_modal');
+modalDiv.classList.add('fade-in');
+modalDiv.style.display = 'block';
+
+// Po zakończeniu animacji ukryj okno modalne z animacją zanikania
+const hideModal = () => {
+  modalDiv.classList.add('fade-out');
+  modalDiv.addEventListener('animationend', () => {
+    modalDiv.style.display = 'none';
+  });
+};
+
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyAf3rTg56vrMk1Dnhiwfnq9jZgD80Ti4wA',
@@ -67,6 +79,7 @@ const saveuser = event => {
       })
         .then(() => {
           Notiflix.Notify.success('User saved!');
+          hideModal();
           firebaseBlock.classList.remove('backdrop');
         })
         .catch(error => {
@@ -100,16 +113,17 @@ const loginUser = event => {
       })
         .then(() => {
           Notiflix.Notify.success('User logged in succesfully!');
+          hideModal();
           firebaseBlock.classList.remove('backdrop');
         })
         .catch(error => {
-          console.error(error);
+          Notiflix.Notify.failure('User not found, check email or password');
         });
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.error(error);
+      Notiflix.Notify.failure('User not found, check email or password');
     });
 };
 
@@ -121,7 +135,7 @@ const signOutUser = () => {
       signOutButton.style.display = 'none';
     })
     .catch(error => {
-      Notiflix.Notify.failure('User not found, check email or password');
+      console.error(error);
     });
 };
 
@@ -150,28 +164,59 @@ onAuthStateChanged(auth, user => {
   }
 });
 
+function closeModalOnClick() {
+  homeLink.classList.add('active');
+  loginBtn.classList.remove('active');
+
+  const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
+  closeModalBtn.removeEventListener('click', closeModalOnClick);
+
+  modalDiv.innerHTML = '';
+  firebaseBlock.classList.toggle('backdrop');
+
+  modalDiv.classList.remove('fade-in');
+  modalDiv.classList.remove('fade-out');
+  // modalDiv.style.display = 'none';
+  // formFirebase.removeEventListener('submit', saveuser);
+  // formFirebaseLogin.removeEventListener('submit', loginUser);
+
+  window.removeEventListener('click', closeModal);
+}
+
 function closeModal(event) {
   if (event.target.classList.contains('backdrop') === false) {
     console.log('kliknieto w modal');
+
     return;
   } else {
     homeLink.classList.add('active');
     loginBtn.classList.remove('active');
+
+    const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
+    closeModalBtn.removeEventListener('click', closeModalOnClick);
+
     modalDiv.innerHTML = '';
     firebaseBlock.classList.toggle('backdrop');
+
+    modalDiv.classList.remove('fade-in');
+    modalDiv.classList.remove('fade-out');
+    // modalDiv.style.display = 'none';
+    // formFirebase.removeEventListener('submit', saveuser);
+    // formFirebaseLogin.removeEventListener('submit', loginUser);
+
     window.removeEventListener('click', closeModal);
-    formFirebase.removeEventListener('submit', saveuser);
-    formFirebaseLogin.removeEventListener('submit', loginUser);
   }
 }
 
-const modalDiv = document.querySelector('.firebase_modal');
 const generateRegisterForm = () => {
   homeLink.classList.remove('active');
   loginBtn.classList.add('active');
   firebaseBlock.classList.toggle('backdrop');
+  // modalDiv.classList.add('fade-in');
+  // modalDiv.style.display = 'block';
   modalDiv.innerHTML = `
   <form class="form-firebase">
+  <button type="button" class="form-firebase__closeBtn">X</button>
     <h2 class="form-firebase__title">Registration</h2>
     <div class="form-firebase__field">
       <label for="register-username" class="form-firebase__label"
@@ -217,7 +262,7 @@ const generateRegisterForm = () => {
     >
       Register
     </button>
-    <p>Already have an account?<button type="button" id="changeToLoginModal">Sign in</button></p>
+    <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Sign in</button></p>
   </form>
 </div>
 `;
@@ -229,11 +274,15 @@ const generateRegisterForm = () => {
 
   const changeToLoginModalBtn = document.querySelector('#changeToLoginModal');
   changeToLoginModalBtn.addEventListener('click', changeToLoginModal);
+
+  const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
+  closeModalBtn.addEventListener('click', closeModalOnClick);
 };
 
 function changeToLoginModal() {
   modalDiv.innerHTML = '';
   modalDiv.innerHTML = `      <form class="form-firebase-login">
+  <button type="button" class="form-firebase__closeBtn">X</button>
   <h2 class="form-firebase__title">Log in</h2>
 
   <div class="form-firebase__field">
@@ -271,6 +320,9 @@ function changeToLoginModal() {
 
   const formFirebaseLogin = document.querySelector('.form-firebase-login');
   formFirebaseLogin.addEventListener('submit', loginUser);
+
+  const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
+  closeModalBtn.addEventListener('click', closeModalOnClick);
 }
 
 loginBtn.addEventListener('click', generateRegisterForm);
