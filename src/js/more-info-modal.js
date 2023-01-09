@@ -53,7 +53,7 @@ export const renderModal = example => {
 
   moreInfoModal.innerHTML = markup;
 
-  body.classList.add('no-scroll')
+  body.classList.add('no-scroll');
   //body.style.position = 'fixed'
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
@@ -66,7 +66,7 @@ modalSection.addEventListener('click', event => {
   }
 
   modalSection.classList.add('is-hidden');
-  body.classList.remove('no-scroll')
+  body.classList.remove('no-scroll');
   //body.style.position = ''
 });
 
