@@ -14,8 +14,11 @@ import {
 } from 'firebase/auth';
 
 const homeLink = document.querySelector('#home-link');
-const myLibraryLink = document.querySelector('#my-library-link');
-myLibraryLink.style.display = 'none';
+// const myLibraryLink = document.querySelector('#my-library-link');
+// myLibraryLink.style.display = 'none';
+// const signOutItem = document.querySelector('#sign-out-item');
+// signOutItem.style.display = 'none';
+
 const signOutButton = document.querySelector('#sign-out-btn');
 
 const windowHeight = window.innerHeight;
@@ -142,10 +145,10 @@ const signOutUser = () => {
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in
+    const signOutItem = document.querySelector('#sign-out-item');
     const uid = user.uid;
-    console.log(user.email);
-    console.log(user.uid);
-    myLibraryLink.style.display = 'inline';
+
+    signOutItem.style.display = 'inline';
 
     homeLink.classList.add('active');
     loginBtn.classList.remove('active');
@@ -158,9 +161,10 @@ onAuthStateChanged(auth, user => {
     // ...
   } else {
     // User is signed out
-    myLibraryLink.style.display = 'none';
+    const signOutItem = document.querySelector('#sign-out-item');
+
+    signOutItem.style.display = 'none';
     loginBtn.style.display = 'inline';
-    console.log('Wylogowano użytkownika brak danych');
   }
 });
 
@@ -185,8 +189,6 @@ function closeModalOnClick() {
 
 function closeModal(event) {
   if (event.target.classList.contains('backdrop') === false) {
-    console.log('kliknieto w modal');
-
     return;
   } else {
     homeLink.classList.add('active');
