@@ -1,4 +1,5 @@
 'use strict';
+import { Loading } from 'notiflix';
 import { fetchVideo } from './fetch-video';
 import { fetchVideoPopular } from './fetch-video';
 import { fetchDetails } from './fetch-video';
@@ -11,11 +12,26 @@ const gallery = document.querySelector('.home-gallery');
 const paginationBtns = document.querySelectorAll('.pag-btns__btn');
 const nextBtn = document.querySelector('.pag-btns__arrow--next');
 const prevBtn = document.querySelector('.pag-btns__arrow--prev');
+const btnBox = document.querySelector('.btn-box');
 const dots = document.querySelectorAll('.pag-btns__dots');
+const searchErr = document.querySelector('.search-error');
+
 let pageNumber = 1;
 
-console.log(paginationBtns);
-console.log(typeof paginationBtns);
+const loadingSpinner = document.createElement('div');
+loadingSpinner.classList.add('loading');
+loadingSpinner.innerHTML = '<div class="loading__spinner"></div>';
+
+// funkcja pokazująca loading spinner
+const onLoading = () => {
+  loadingSpinner.classList.remove('is-hidden');
+  gallery.appendChild(loadingSpinner);
+};
+
+// funkcja ukrywająca loading spinner
+const loadingDone = () => {
+  loadingSpinner.classList.add('is-hidden');
+};
 
 // funkcja do wyświetlania wyszukanych filmów
 const renderVideoCard = videoArray => {
@@ -64,31 +80,22 @@ const checkResult = totalResults => {
   dots[0].classList.add('pag-btns__dots--is-hidden');
   dots[1].classList.add('pag-btns__dots--is-hidden');
 
-  nextBtn.disabled = false;
-  prevBtn.disabled = false;
-
-  if (totalResults === 0) {
-    // tutaj usuwam klase is-hidden w komentarzu wrzuconym do hedera przez Olgę, że nie znaleziono filmów
-    return;
-  }
-
+  // podświetlenie aktywnego przycisku
   paginationBtns.forEach(btn => {
     if (Number(btn.textContent) !== pageNumber) {
-      // btn.classList.remove('.pag-btns__btn--active');
-      btn.style.backgroundColor = 'transparent';
-      console.log('remove');
+      btn.classList.remove('pag-btns__btn--is-active');
+      btn.disabled = false;
     }
     if (Number(btn.textContent) === pageNumber) {
-      // btn.classList.add('.pag-btns__btn--active');
-      btn.style.backgroundColor = 'orange';
-      console.log('add');
+      btn.classList.add('pag-btns__btn--is-active');
+      btn.disabled = true;
     }
   });
 
+  // pokazywanie przycisków w zależności od ilości stron
   if (totalPages === 1) {
     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
     paginationBtns[0].disabled = true;
-    // tutaj można jeszcze usunąć cursor pointer
   } else if (totalPages === 2) {
     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
     paginationBtns[1].classList.remove('pag-btns__btn--is-hidden');
@@ -137,23 +144,64 @@ const checkResult = totalResults => {
 
   //  funkcjonalność do zmiany numerów strony
 
+  // blokowanie strzałek do przewijania na pierwszej i ostatniej stronie
   if (pageNumber === 1 && totalPages !== 1) {
     prevBtn.disabled = true;
-  } else if (pageNumber === totalPages && totalPages !== 1) {
+    prevBtn.classList.add('pag-btns__arrow--disabled');
+  } else {
+    prevBtn.disabled = false;
+    prevBtn.classList.remove('pag-btns__arrow--disabled');
+  }
+
+  if (pageNumber === totalPages && totalPages !== 1) {
     nextBtn.disabled = true;
+    nextBtn.classList.add('pag-btns__arrow--disabled');
+  } else {
+    nextBtn.disabled = false;
+    nextBtn.classList.remove('pag-btns__arrow--disabled');
   }
 };
+
+// const checkResult = totalResults => {
+//   btnBox.innerHTML = '';
+//   const totalPages = Math.ceil(totalResults / 20);
+
+//    nextBtn.classList.add('pag-btns__arrow--is-hidden');
+//    prevBtn.classList.add('pag-btns__arrow--is-hidden');
+
+//   btnBox.innerHTML = 'TEST';
+
+//   // blokowanie strzałek do przewijania na pierwszej i ostatniej stronie
+//   if (pageNumber === 1 && totalPages !== 1) {
+//     prevBtn.disabled = true;
+//     prevBtn.classList.add('pag-btns__arrow--disabled');
+//   } else {
+//     prevBtn.disabled = false;
+//     prevBtn.classList.remove('pag-btns__arrow--disabled');
+//   }
+
+//   if (pageNumber === totalPages && totalPages !== 1) {
+//     nextBtn.disabled = true;
+//     nextBtn.classList.add('pag-btns__arrow--disabled');
+//   } else {
+//     nextBtn.disabled = false;
+//     nextBtn.classList.remove('pag-btns__arrow--disabled');
+//   }
+// };
 
 // obsługa zapytania o najpopularniejsze filmy
 const loadPopularMovies = event => {
   gallery.innerHTML = ``;
 
+  onLoading();
+
   fetchVideoPopular()
     .then(data => {
-      console.log(data);
+      // console.log(data);
       const dataArray = data.results;
       // console.log(dataArray);
       renderVideoCard(dataArray);
+      loadingDone();
     })
     .catch(error => {
       console.error(error);
@@ -163,25 +211,41 @@ const loadPopularMovies = event => {
 // obsługa zapytania o film dopasowany do wartości wpisanej do input
 const searchVideo = async event => {
   event.preventDefault();
-
+  onLoading();
   pageNumber = 1;
 
   const {
     elements: { searchQuery },
   } = form;
   const formSearch = searchQuery.value;
-  // console.log(formSearch);
+
+  if (formSearch === '') {
+    searchErr.textContent = 'Enter the movie name.';
+    searchErr.classList.remove('is-hidden');
+    loadingDone();
+    return;
+  } else {
+    searchErr.classList.add('is-hidden');
+  }
 
   await fetchVideo(formSearch, pageNumber)
     .then(data => {
-      console.log(data);
+      const totalResults = data.total_results;
+      if (totalResults === 0) {
+        searchErr.textContent =
+          'Search result not successful. Enter the correct movie name.';
+        searchErr.classList.remove('is-hidden');
+        loadingDone();
+        return;
+      }
+      // console.log(data);
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
-
-      const totalResults = data.total_results;
       checkResult(totalResults);
+
+      console.log(`Wczytana strona: ${pageNumber}`);
     })
     .catch(error => {
       gallery.innerHTML = ``;
@@ -191,12 +255,14 @@ const searchVideo = async event => {
 
 // obsługa paginacji
 const nextPage = async () => {
+  onLoading();
+
   const {
     elements: { searchQuery },
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   pageNumber++;
 
@@ -204,8 +270,18 @@ const nextPage = async () => {
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
+
+      // const { height: cardHeight } = document
+      //   .querySelector('.container')
+      //   .firstElementChild.getBoundingClientRect();
+
+      // window.scrollBy({
+      //   top: cardHeight * 2,
+      //   behavior: 'smooth',
+      // });
+
       const totalResults = data.total_results;
       checkResult(totalResults);
 
@@ -218,12 +294,14 @@ const nextPage = async () => {
 };
 
 const prevPage = async () => {
+  onLoading();
+
   const {
     elements: { searchQuery },
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   pageNumber--;
 
@@ -231,8 +309,18 @@ const prevPage = async () => {
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
+
+      // const { height: cardHeight } = document
+      //   .querySelector('.home-gallery')
+      //   .firstElementChild.getBoundingClientRect();
+
+      // window.scrollBy({
+      //   top: cardHeight * 2,
+      //   behavior: 'smooth',
+      // });
+
       const totalResults = data.total_results;
       checkResult(totalResults);
       console.log(`Wczytana strona: ${pageNumber}`);
@@ -248,22 +336,23 @@ const pageByNumber = async event => {
   if (!event.target.closest('.pag-btns__btn')) {
     return;
   }
+  onLoading();
 
   pageNumber = Number(target.textContent);
-  console.log(typeof pageNumber);
+  // console.log(typeof pageNumber);
 
   const {
     elements: { searchQuery },
   } = form;
 
   const formSearch = searchQuery.value;
-  console.log(formSearch);
+  // console.log(formSearch);
 
   await fetchVideo(formSearch, pageNumber)
     .then(data => {
       gallery.innerHTML = ``;
       const dataArray = data.results;
-      console.log(dataArray);
+      // console.log(dataArray);
       renderVideoCard(dataArray);
       const totalResults = data.total_results;
       checkResult(totalResults);
@@ -292,7 +381,7 @@ const getDetails = event => {
 
   fetchDetails(movieId)
     .then(data => {
-      console.log(data);
+      // console.log(data);
       renderModal(data);
     })
     .catch(error => {

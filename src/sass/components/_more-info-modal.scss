@@ -116,7 +116,7 @@
     @media screen and (min-width: 1024px) {
       width: 396px;
       height: auto;
-      margin-bottom: 40.2px;
+      margin-bottom: 40.2;
       margin-top: 50px;
     }
   }
@@ -246,81 +246,26 @@
     @media screen and (min-width: 768px) {
       padding: 14px 9px 12px 9px;
     }
-
-    //koniec animacji od Gosi
-
-    &.in-storage {
-      background-color: get-bg-color(leading);
-      color: get-font-color(on-leading-bg);
-      border: none;
-      padding-left: 8px;
-      padding-right: 8px;
-
-      @media screen and (min-width: 1024px) {
-        padding: 14px 10px 12px 10px;
-      }
+    @media screen and (min-width: 1024px) {
+      padding: 14px 10px 12px 10px;
     }
   }
 }
 
-/* tablet */
-@media screen and (min-width: 768px) {
-  .container-modal {
-    margin-left: 28px;
-    margin-right: 28px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 32px;
-  }
-  .more-info-modal {
-    &__close-btn {
-      top: 10px;
-      right: 10px;
-      //margin: 10px 10px 2px 578px;
-    }
+.in-storage {
+  background-color: get-bg-color(leading);
+  color: get-font-color(on-leading-bg);
+  border: none;
+  outline-color: get-font-color(leading);
 
-    &__poster {
-      width: 264px;
-
-      height: auto;
-      margin-bottom: 0px;
-    }
-
-    &__title {
-      margin-top: 42px;
-    }
-    &__text {
-      min-width: 264px;
-    }
-
-    &__btn-box {
-      gap: 14.94;
-      margin-top: 20px;
-      margin-bottom: 40px;
-      justify-content: flex-start;
-    }
-
-    &__btn {
-      width: 125.03px;
-
-      .in-storage {
-        background-color: get-bg-color(leading);
-        color: get-font-color(on-leading-bg);
-        border: none;
-        outline-color: get-font-color(leading);
-
-        &:hover {
-          border: 1px solid black;
-          color: get-font-color(dark-text);
-          box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
-            0 0 20px rgba(255, 255, 255, 0.2);
-          outline-color: rgba(255, 255, 255, 0);
-          outline-offset: 10px;
-          text-shadow: 1px 1px 2px #427388;
-          background-color: get-bg-color(basic);
-        }
-      }
-    }
+  &:hover {
+    border: 1px solid black;
+    color: get-font-color(dark-text);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5),
+      0 0 20px rgba(255, 255, 255, 0.2);
+    outline-color: rgba(255, 255, 255, 0);
+    outline-offset: 10px;
+    text-shadow: 1px 1px 2px #427388;
+    background-color: get-bg-color(basic);
   }
 }
