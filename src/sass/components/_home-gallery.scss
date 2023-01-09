@@ -1,17 +1,108 @@
+.home-library {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+}
+
 .home-gallery {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 20px;
+
+  @media screen and (min-width: 768px) {
+    max-width: unset;
+    gap: 30px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: unset;
+    justify-content: flex-start;
+  }
+
+  &__card {
+    width: 100%;
+    max-width: 294px;
+    overflow: hidden;
+    position: relative;
+
+    @media screen and (min-width: 768px) {
+      width: 49%;
+    }
+    @media screen and (min-width: 1024px) {
+      width: 31%;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__label {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: get-bg-color(leading);
+    transform: translate(100%);
+    transition-property: transform;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    opacity: 0.85;
+    cursor: pointer;
+    border-radius: 5px;
+
+    &-text {
+      font-size: 35px;
+      padding: 0 10px;
+      text-align: center;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+  }
+
+  &__signature {
+    padding-top: 10px;
+    position: relative;
+    background-color: white;
+    z-index: 3;
+    height: 70px;
+    width: 100%;
+  }
+  &__title {
+    font-size: 12px;
+    line-height: 1.33;
+    text-transform: uppercase;
+    color: get-font-color(dark-text);
+  }
+
+  &__details {
+    font-size: 12px;
+    line-height: 1.71;
+    color: get-font-color(leading);
+  }
 }
-.home-gallery__img {
-  border-radius: 5px;
-  transition-property: scale;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
-}
-.home-gallery__img:hover {
-  scale: 1.1;
-}
-.home-gallery__card {
-  width: 274px;
+
+.home-gallery__card:hover .home-gallery__label {
+  transform: translate(0);
 }

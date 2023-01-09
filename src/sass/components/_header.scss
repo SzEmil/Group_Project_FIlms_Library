@@ -14,6 +14,16 @@
     line-height: 1.17;
     padding-top: 46px;
     padding-bottom: 43px;
+    @media screen and (min-width: 768px) {
+      line-height: 1.17;
+      padding-top: 41px;
+      padding-bottom: 59px;
+    }
+    @media screen and (min-width: 1024px) {
+      line-height: 1.17;
+      padding-top: 41px;
+      padding-bottom: 59px;
+    }
   }
 }
 
@@ -34,8 +44,10 @@
   }
 
   &__logo {
-    gap: 10px;
     align-items: center;
+    @media screen and (min-width: 768px) {
+      gap: 10px;
+    }
   }
 
   &__logo-icon {
@@ -45,13 +57,11 @@
   &__logo-name {
     font-size: 30px;
     font-weight: 500;
-    visibility: hidden;
+    display: none;
 
     @media screen and (min-width: 768px) {
-      visibility: visible;
+      display: flex;
     }
-
-    // ----- DESKTOP -----
     @media screen and (min-width: 1024px) {
       visibility: visible;
     }
@@ -85,29 +95,6 @@
     &.active::after {
       background-color: #ff6b08;
       max-width: 100%;
-    }
-  }
-}
-
-/* tablet */
-@media screen and (min-width: 768px) {
-  .header {
-    &__container {
-      line-height: 1.17;
-      padding-top: 41px;
-      padding-bottom: 59px;
-    }
-  }
-}
-
-/* desktop */
-
-@media screen and (min-width: 1024px) {
-  .header {
-    &__container {
-      line-height: 1.17;
-      padding-top: 41px;
-      padding-bottom: 59px;
     }
   }
 }
