@@ -7,7 +7,6 @@ const body = document.querySelector('body');
 
 export const renderModal = example => {
   modalSection.classList.remove('is-hidden');
-  modalSection.classList.add('backdrop');
   const parsedGenres = example.genres.map(genre => genre.name).join(', ');
 
   const markup = `<button class="more-info-modal__close-btn">
@@ -54,7 +53,8 @@ export const renderModal = example => {
 
   moreInfoModal.innerHTML = markup;
 
-  body.style.overflow = 'hidden';
+  body.classList.add('no-scroll')
+  //body.style.position = 'fixed'
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
@@ -66,8 +66,8 @@ modalSection.addEventListener('click', event => {
   }
 
   modalSection.classList.add('is-hidden');
-  modalSection.classList.remove('backdrop');
-  body.style.overflow = 'auto';
+  body.classList.remove('no-scroll')
+  //body.style.position = ''
 });
 
 document.addEventListener('keydown', event => {

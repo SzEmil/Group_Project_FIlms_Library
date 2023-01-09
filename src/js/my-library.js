@@ -44,7 +44,7 @@ export function populateSection(target) {
 
 function renderEmptyState() {
   const markup = `
-  <li class='grid_my_library__element-empty'>
+  <div class='grid_my_library__element-empty'>
       <p class='grid_my_library__element-empty-txt'>
         The Movie Dog<br/>
         <strong>is waiting for you</strong><br/>
@@ -52,7 +52,7 @@ function renderEmptyState() {
         to the list
       </p>
         <div class='grid_my_library__element-empty-img'></div>
-    </li>
+    </div>
   `;
   sectionContainer.innerHTML = markup;
 }
@@ -98,27 +98,30 @@ function renderMovieElement(movieData) {
     imageSrc,
     id,
   } = movieData;
-  const listElement = document.createElement('li');
-  const buttonElement = document.createElement('button');
+  //const listElement = document.createElement('li');
+  const divElement = document.createElement('div');
   const categoriesMarkup = categories ? `<span class='grid_my_library__element-category'>${categories}</span>` : '';
   const yearMarkup = categories ? `<span class='grid_my_library__element-year'>${year}</span>` : '';
   const scoreMarkup = categories ? `<span class='grid_my_library__element-score'>${score}</span>` : '';
-  const buttonMarkup = `
+  const buttonMarkup = `<div class="grid_my_library__label">
+  <p class="grid_my_library__label-text">Click for more detalis</p>
+</div>
         <img src='${imageSrc}'
              class='grid_my_library__element-img'
              alt='${title}' />
+        <div class="grid_my_library__signature">
         <span class='grid_my_library__element-title'>${title}</span><br/>
         ${categoriesMarkup}
         ${yearMarkup}
-        ${scoreMarkup}
+        ${scoreMarkup}</div>
   `;
-  buttonElement.setAttribute('role', 'button');
-  buttonElement.setAttribute('title', title);
-  buttonElement.classList.add('grid_my_library__element');
-  buttonElement.innerHTML = buttonMarkup;
-  buttonElement.addEventListener('click', (_) => getDetails(id));
-  listElement.appendChild(buttonElement);
-  sectionContainer.appendChild(listElement);
+  //divElement.setAttribute('role', 'button');
+  divElement.setAttribute('title', title);
+  divElement.classList.add('grid_my_library__element');
+  divElement.innerHTML = buttonMarkup;
+  divElement.addEventListener('click', (_) => getDetails(id));
+  //listElement.appendChild(divElement);
+  sectionContainer.appendChild(divElement);
 }
 
 function initScripts() {
