@@ -6,8 +6,6 @@ const modalSection = document.querySelector('[data-modal-video]');
 const body = document.querySelector('body');
 
 export const renderModal = example => {
-
-
   modalSection.classList.remove('is-hidden');
   const parsedGenres = example.genres.map(genre => genre.name).join(', ');
 
