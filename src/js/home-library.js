@@ -12,6 +12,7 @@ const gallery = document.querySelector('.home-gallery');
 const paginationBtns = document.querySelectorAll('.pag-btns__btn');
 const nextBtn = document.querySelector('.pag-btns__arrow--next');
 const prevBtn = document.querySelector('.pag-btns__arrow--prev');
+const btnBox = document.querySelector('.btn-box');
 const dots = document.querySelectorAll('.pag-btns__dots');
 const searchErr = document.querySelector('.search-error');
 
@@ -156,6 +157,33 @@ const checkResult = totalResults => {
     nextBtn.classList.remove('pag-btns__arrow--disabled');
   }
 };
+
+// const checkResult = totalResults => {
+//   btnBox.innerHTML = '';
+//   const totalPages = Math.ceil(totalResults / 20);
+
+//    nextBtn.classList.add('pag-btns__arrow--is-hidden');
+//    prevBtn.classList.add('pag-btns__arrow--is-hidden');
+
+//   btnBox.innerHTML = 'TEST';
+
+//   // blokowanie strzałek do przewijania na pierwszej i ostatniej stronie
+//   if (pageNumber === 1 && totalPages !== 1) {
+//     prevBtn.disabled = true;
+//     prevBtn.classList.add('pag-btns__arrow--disabled');
+//   } else {
+//     prevBtn.disabled = false;
+//     prevBtn.classList.remove('pag-btns__arrow--disabled');
+//   }
+
+//   if (pageNumber === totalPages && totalPages !== 1) {
+//     nextBtn.disabled = true;
+//     nextBtn.classList.add('pag-btns__arrow--disabled');
+//   } else {
+//     nextBtn.disabled = false;
+//     nextBtn.classList.remove('pag-btns__arrow--disabled');
+//   }
+// };
 
 // obsługa zapytania o najpopularniejsze filmy
 const loadPopularMovies = event => {
