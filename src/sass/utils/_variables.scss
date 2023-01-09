@@ -3,6 +3,7 @@ $font-color: (
   'light-text': #8c8c8c,
   'on-leading-bg': white,
   'leading': #ff6b08,
+  'team': #545454,
 );
 $bg-color: (
   'backdrop': (
@@ -13,6 +14,10 @@ $bg-color: (
   'footer-bg': #f7f7f7,
   'header-underline': #ff6b08,
   'logo-fill': #818181,
+  'team-modal-bg': rgba(0, 0, 0, 0.2),
+  'team-bg': #332d29,
+  'team-close': #545454,
+  'team-img': rgba(0, 0, 0, 0.5),
 );
 //$hover: ();
 
