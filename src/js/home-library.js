@@ -69,283 +69,101 @@ const renderVideoCard = videoArray => {
 };
 
 // funkcja sprawdzająca ilość wyszukanych elementów oraz stron i obsługująca widoczność przycisków do przewijania stron
-// const checkResult = totalResults => {
-//   const totalPages = Math.ceil(totalResults / 20);
-
-//   for (let i = 0; i <= 6; i++) {
-//     paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//   }
-//   nextBtn.classList.add('pag-btns__arrow--is-hidden');
-//   prevBtn.classList.add('pag-btns__arrow--is-hidden');
-//   dots[0].classList.add('pag-btns__dots--is-hidden');
-//   dots[1].classList.add('pag-btns__dots--is-hidden');
-
-//   // podświetlenie aktywnego przycisku
-//   paginationBtns.forEach(btn => {
-//     if (Number(btn.textContent) !== pageNumber) {
-//       btn.classList.remove('pag-btns__btn--is-active');
-//       btn.disabled = false;
-//     }
-//     if (Number(btn.textContent) === pageNumber) {
-//       btn.classList.add('pag-btns__btn--is-active');
-//       btn.disabled = true;
-//     }
-//   });
-
-//   // pokazywanie przycisków w zależności od ilości stron
-//   if (totalPages === 1) {
-//     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
-//     paginationBtns[0].disabled = true;
-//   } else if (totalPages === 2) {
-//     paginationBtns[0].classList.remove('pag-btns__btn--is-hidden');
-//     paginationBtns[1].classList.remove('pag-btns__btn--is-hidden');
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages === 3) {
-//     for (let i = 0; i <= 2; i++) {
-//       paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//     }
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages === 4) {
-//     for (let i = 0; i <= 3; i++) {
-//       paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//     }
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages === 5) {
-//     for (let i = 0; i <= 4; i++) {
-//       paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//     }
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages === 6) {
-//     for (let i = 0; i <= 5; i++) {
-//       paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//     }
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages === 7) {
-//     for (let i = 0; i <= 6; i++) {
-//       paginationBtns[i].classList.add('pag-btns__btn--is-hidden');
-//     }
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//   } else if (totalPages > 7) {
-//     dots[0].classList.remove('pag-btns__dots--is-hidden');
-//     dots[1].classList.remove('pag-btns__dots--is-hidden');
-//     nextBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     prevBtn.classList.remove('pag-btns__arrow--is-hidden');
-//     for (let i = 0; i <= 6; i++) {
-//       paginationBtns[i].classList.remove('pag-btns__btn--is-hidden');
-//     }
-//     paginationBtns[6].textContent = totalPages;
-//   }
-
-//   //  funkcjonalność do zmiany numerów strony
-
-//   // blokowanie strzałek do przewijania na pierwszej i ostatniej stronie
-//   if (pageNumber === 1 && totalPages !== 1) {
-//     prevBtn.disabled = true;
-//     prevBtn.classList.add('pag-btns__arrow--disabled');
-//   } else {
-//     prevBtn.disabled = false;
-//     prevBtn.classList.remove('pag-btns__arrow--disabled');
-//   }
-
-//   if (pageNumber === totalPages && totalPages !== 1) {
-//     nextBtn.disabled = true;
-//     nextBtn.classList.add('pag-btns__arrow--disabled');
-//   } else {
-//     nextBtn.disabled = false;
-//     nextBtn.classList.remove('pag-btns__arrow--disabled');
-//   }
-// };
-
-// const renderBtn = () {
-
-// }
-
 const checkResult = totalResults => {
   btnBox.innerHTML = '';
   const totalPages = Math.ceil(totalResults / 20);
 
+  const windowWidth = window.innerWidth;
+
   nextBtn.classList.remove('pag-btns__arrow--is-hidden');
   prevBtn.classList.remove('pag-btns__arrow--is-hidden');
 
+  //HTML tworzenie pierwszego i ostatniego buttona
   const firstBtn = document.createElement('button');
   firstBtn.classList.add('pag-btns__btn');
   firstBtn.setAttribute('type', 'button');
   firstBtn.textContent = 1;
-
-  const activeBtn = document.createElement('button');
-  activeBtn.classList.add('pag-btns__btn', 'pag-btns__btn--is-active');
-  activeBtn.setAttribute('type', 'button');
-  activeBtn.textContent = pageNumber;
-  activeBtn.disabled = true;
-
-  let btnArrBefor = [];
-  for (
-    let i = Number(activeBtn.textContent) - 5;
-    i < Number(activeBtn.textContent);
-    i++
-  ) {
-    const btn = document.createElement('button');
-    btn.classList.add('pag-btns__btn');
-    btn.setAttribute('type', 'button');
-    btn.textContent = i;
-
-    btnArrBefor.push(btn);
-  }
-
-  let btnArrAfter = [];
-  for (
-    let i = Number(activeBtn.textContent) + 1;
-    i < Number(activeBtn.textContent) + 6;
-    i++
-  ) {
-    const btn = document.createElement('button');
-    btn.classList.add('pag-btns__btn');
-    btn.setAttribute('type', 'button');
-    btn.textContent = i;
-
-    btnArrAfter.push(btn);
-  }
-
   const lastBtn = document.createElement('button');
   lastBtn.classList.add('pag-btns__btn');
   lastBtn.setAttribute('type', 'button');
   lastBtn.textContent = totalPages;
 
-  const dotsFirst = document.createElement('span');
-  dotsFirst.classList.add('pag-btns__dots');
-  dotsFirst.textContent = '...';
-  const dotsLast = document.createElement('span');
-  dotsLast.classList.add('pag-btns__dots');
-  dotsLast.textContent = '...';
+  //HTML tworzenie kropeczek pomiędzy pierwszym i ostatnim, a pozostałymi buttonami
+  const dots = document.createElement('span');
+  dots.classList.add('pag-btns__dots');
+  dots.textContent = '...';
+  const dotsSec = document.createElement('span');
+  dotsSec.classList.add('pag-btns__dots');
+  dotsSec.textContent = '...';
+
+  //HTML tworzenie buttonów
+  let buttonArr = [];
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement('button');
+    button.classList.add('pag-btns__btn');
+    button.setAttribute('type', 'button');
+    button.setAttribute('number', `${i}`);
+    button.textContent = i;
+
+    if (Number(button.textContent) === pageNumber) {
+      button.classList.add('pag-btns__btn--is-active');
+      button.disabled = true;
+    }
+
+    buttonArr.push(button);
+  }
 
   if (totalPages > 7 && pageNumber < 5) {
-    if (pageNumber === 1) {
-      btnBox.append(
-        activeBtn,
-        btnArrAfter[0],
-        btnArrAfter[1],
-        btnArrAfter[2],
-        btnArrAfter[3],
-        btnArrAfter[4],
-        dotsLast,
-        lastBtn
-      );
-    } else if (pageNumber === 2) {
-      btnBox.append(
-        firstBtn,
-        activeBtn,
-        btnArrAfter[0],
-        btnArrAfter[1],
-        btnArrAfter[2],
-        btnArrAfter[3],
-        dotsLast,
-        lastBtn
-      );
-    } else if (pageNumber === 3) {
-      btnBox.append(
-        firstBtn,
-        btnArrBefor[4],
-        activeBtn,
-        btnArrAfter[0],
-        btnArrAfter[1],
-        btnArrAfter[2],
-        dotsLast,
-        lastBtn
-      );
-    } else if (pageNumber === 4) {
-      btnBox.append(
-        firstBtn,
-        btnArrBefor[3],
-        btnArrBefor[4],
-        activeBtn,
-        btnArrAfter[0],
-        btnArrAfter[1],
-        dotsLast,
-        lastBtn
-      );
+    if (windowWidth < 450 && pageNumber <= 3) {
+      for (let i = 0; i <= 4; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+    } else if (windowWidth < 450 && pageNumber === 4) {
+      for (let i = 1; i <= 5; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+    } else {
+      for (let i = 0; i <= 5; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+      btnBox.append(dots, lastBtn);
     }
   } else if (totalPages > 7 && pageNumber > 4 && pageNumber < totalPages - 3) {
-    btnBox.append(
-      firstBtn,
-      dotsFirst,
-      btnArrBefor[3],
-      btnArrBefor[4],
-      activeBtn,
-      btnArrAfter[0],
-      btnArrAfter[1],
-      dotsLast,
-      lastBtn
-    );
-  } else if (totalPages > 7 && pageNumber > totalPages - 4) {
-    if (pageNumber === totalPages - 3) {
-      btnBox.append(
-        firstBtn,
-        dotsFirst,
-        btnArrBefor[3],
-        btnArrBefor[4],
-        activeBtn,
-        btnArrAfter[0],
-        btnArrAfter[1],
-        lastBtn
-      );
-    } else if (pageNumber === totalPages - 2) {
-      btnBox.append(
-        firstBtn,
-        dotsFirst,
-        btnArrBefor[2],
-        btnArrBefor[3],
-        btnArrBefor[4],
-        activeBtn,
-        btnArrAfter[0],
-        lastBtn
-      );
-    } else if (pageNumber === totalPages - 1) {
-      btnBox.append(
-        firstBtn,
-        dotsFirst,
-        btnArrBefor[1],
-        btnArrBefor[2],
-        btnArrBefor[3],
-        btnArrBefor[4],
-        activeBtn,
-        lastBtn
-      );
-    } else if (pageNumber === totalPages) {
-      btnBox.append(
-        firstBtn,
-        dotsFirst,
-        btnArrBefor[0],
-        btnArrBefor[1],
-        btnArrBefor[2],
-        btnArrBefor[3],
-        btnArrBefor[4],
-        activeBtn
-      );
+    if (windowWidth < 450) {
+      for (let i = pageNumber - 3; i <= pageNumber + 1; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+    } else {
+      btnBox.prepend(firstBtn, dots);
+      for (let i = pageNumber - 3; i <= pageNumber + 1; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+      btnBox.append(dotsSec, lastBtn);
+    }
+  } else if (totalPages > 7 && pageNumber >= totalPages - 3) {
+    if (windowWidth < 450 && pageNumber === totalPages - 3) {
+      for (let i = totalPages - 6; i <= totalPages - 2; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+    } else if (windowWidth < 450 && pageNumber > totalPages - 3) {
+      for (let i = totalPages - 5; i <= totalPages - 1; i++) {
+        btnBox.append(buttonArr[i]);
+      }
+    } else {
+      btnBox.append(firstBtn, dots);
+      for (let i = totalPages - 6; i <= totalPages - 1; i++) {
+        btnBox.append(buttonArr[i]);
+      }
     }
   } else if (totalPages < 8) {
-    let buttonArr = [];
-    for (let i = 1; i <= totalPages; i++) {
-      const button = document.createElement('button');
-      button.classList.add('pag-btns__btn');
-      button.setAttribute('type', 'button');
-      button.setAttribute('number', `${i}`);
-      button.textContent = i;
-
-      if (Number(button.textContent) === pageNumber) {
-        button.classList.add('pag-btns__btn--is-active');
+    if (windowWidth < 450 && totalPages > 5) {
+      for (let i = pageNumber - 5; i <= 5; i++) {
+        btnBox.append(buttonArr[i]);
       }
-
-      buttonArr.push(button);
-    }
-
-    for (let i = 0; i < totalPages; i++) {
-      btnBox.append(buttonArr[i]);
+    } else {
+      for (let i = 0; i < totalPages; i++) {
+        btnBox.append(buttonArr[i]);
+      }
     }
   }
 
