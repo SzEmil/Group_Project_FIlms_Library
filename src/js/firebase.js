@@ -185,6 +185,8 @@ function closeModalOnClick() {
   // formFirebaseLogin.removeEventListener('submit', loginUser);
 
   window.removeEventListener('click', closeModal);
+  let body = document.querySelector('body');
+  body.style.overflow = 'auto';
 }
 
 function closeModal(event) {
@@ -207,14 +209,20 @@ function closeModal(event) {
     // formFirebaseLogin.removeEventListener('submit', loginUser);
 
     window.removeEventListener('click', closeModal);
+
+    let body = document.querySelector('body');
+    body.style.overflow = 'auto';
   }
 }
 
 const generateRegisterForm = () => {
+  let body = document.querySelector('body');
+  body.style.overflow = 'hidden';
+
   homeLink.classList.remove('active');
   loginBtn.classList.add('active');
   firebaseBlock.classList.toggle('backdrop');
-  // modalDiv.classList.add('fade-in');
+  modalDiv.classList.add('fade-in');
   // modalDiv.style.display = 'block';
   modalDiv.innerHTML = `
   <form class="form-firebase">

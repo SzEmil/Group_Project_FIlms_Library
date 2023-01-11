@@ -6,6 +6,12 @@ let modalSection = document.querySelector('[data-modal-video]');
 const body = document.querySelector('body');
 
 export const renderModal = example => {
+  let foundSrc = ``;
+  if (example.poster_path === null) {
+    foundSrc = `https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png`;
+  } else {
+    foundSrc = `https://image.tmdb.org/t/p/w300${example.poster_path}`;
+  }
   modalSection.classList.remove('is-hidden');
   const parsedGenres = example.genres.map(genre => genre.name).join(', ');
 
@@ -13,7 +19,7 @@ export const renderModal = example => {
     X
   </button>
   <div class="container-modal">
-    <img class="more-info-modal__poster" loading="lazy" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
+    <img class="more-info-modal__poster" loading="lazy" src="${foundSrc}"  />
     <div class="more-info-modal__description">
       <h1 class="more-info-modal__title">${example.title}</h1>
       <div class="more-info-modal__details">
@@ -68,7 +74,6 @@ modalSection.addEventListener('click', event => {
   modalSection.classList.add('is-hidden');
   body.classList.remove('no-scroll');
 });
-
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {

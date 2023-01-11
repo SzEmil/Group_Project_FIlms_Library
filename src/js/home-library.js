@@ -40,7 +40,12 @@ const renderVideoCard = videoArray => {
       videoArray.map(video => {
         const releaseDate = video.release_date;
         const movieYear = releaseDate.split('-');
-
+        let foundSrc = ``;
+        if (video.poster_path === null) {
+          foundSrc = `https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png`;
+        } else {
+          foundSrc = `https://image.tmdb.org/t/p/w300${video.poster_path}`;
+        }
         const arrGenreId = video.genre_ids;
         const arrVideoGenres = [];
         arrGenreId.map(id => {
@@ -58,7 +63,7 @@ const renderVideoCard = videoArray => {
         card.setAttribute('movieid', video.id);
         card.innerHTML = `<div class="home-gallery__label">
         <p class="home-gallery__label-text">Click for more details</p>
-      </div><img class="home-gallery__img" src="https://image.tmdb.org/t/p/w300${video.poster_path}" alt ="video poster"><div class="home-gallery__signature"><h3 class= "home-gallery__title">${video.title}</h3><p class = "home-gallery__details">${genres} | ${movieYear[0]}</p></div>`;
+      </div><img class="home-gallery__img" src="${foundSrc}" alt ="video poster"><div class="home-gallery__signature"><h3 class= "home-gallery__title">${video.title}</h3><p class = "home-gallery__details">${genres} | ${movieYear[0]}</p></div>`;
 
         gallery.appendChild(card);
       });
