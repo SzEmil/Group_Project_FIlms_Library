@@ -28,7 +28,7 @@ firebaseBlock.style.transform = 'translateY(-50%)';
 
 const modalDiv = document.querySelector('.firebase_modal');
 modalDiv.classList.add('fade-in');
-modalDiv.style.display = 'block';
+// modalDiv.style.display = 'block';
 
 // Po zakończeniu animacji ukryj okno modalne z animacją zanikania
 const hideModal = () => {
@@ -216,6 +216,7 @@ function closeModal(event) {
 }
 
 const generateRegisterForm = () => {
+  modalDiv.style.display = 'block';
   let body = document.querySelector('body');
   body.style.overflow = 'hidden';
 
