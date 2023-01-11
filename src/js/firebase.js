@@ -318,6 +318,7 @@ function changeToLoginModal() {
   >
     Log in
   </button>
+  <p class="form-firebase__paragraph"> No account? Dont worry <button type ="button" id="changeToRegisterModal">Register</button> now</p>
 </form>`;
 
   const formFirebaseLogin = document.querySelector('.form-firebase-login');
@@ -325,6 +326,84 @@ function changeToLoginModal() {
 
   const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
   closeModalBtn.addEventListener('click', closeModalOnClick);
+
+  const changeToRegisterModal = document.querySelector(
+    '#changeToRegisterModal'
+  );
+  changeToRegisterModal.addEventListener(
+    'click',
+    function changeToRegisterModal() {
+      const formFirebaseLogin = document.querySelector('.form-firebase-login');
+      formFirebaseLogin.removeEventListener('submit', loginUser);
+
+      modalDiv.innerHTML = '';
+      modalDiv.innerHTML = `
+    <form class="form-firebase">
+    <button type="button" class="form-firebase__closeBtn">X</button>
+      <h2 class="form-firebase__title">Registration</h2>
+      <div class="form-firebase__field">
+        <label for="register-username" class="form-firebase__label"
+          >Username</label
+        >
+        <input
+          type="text"
+          name="username"
+          id="register-username"
+          class="form-firebase__input"
+          placeholder="Wprowadź swój username"
+          required
+        />
+      </div>
+      <div class="form-firebase__field">
+        <label for="register-email" class="form-firebase__label">Email</label>
+        <input
+          type="email"
+          name="email"
+          id="register-email"
+          class="form-firebase__input"
+          placeholder="Wprowadź swój adres email"
+          required
+        />
+      </div>
+      <div class="form-firebase__field">
+        <label for="register-password" class="form-firebase__label"
+          >Password</label
+        >
+        <input
+          type="password"
+          name="password"
+          id="register-password"
+          class="form-firebase__input"
+          placeholder="Wprowadź swoje hasło"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        id="firebase-submit"
+        class="form-firebase__button"
+      >
+        Register
+      </button>
+      <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Sign in</button></p>
+    </form>
+  </div>
+  `;
+
+      const formFirebase = document.querySelector('.form-firebase');
+      formFirebase.addEventListener('submit', saveuser);
+
+      window.addEventListener('click', closeModal);
+
+      const changeToLoginModalBtn = document.querySelector(
+        '#changeToLoginModal'
+      );
+      changeToLoginModalBtn.addEventListener('click', changeToLoginModal);
+
+      const closeModalBtn = document.querySelector('.form-firebase__closeBtn');
+      closeModalBtn.addEventListener('click', closeModalOnClick);
+    }
+  );
 }
 
 loginBtn.addEventListener('click', generateRegisterForm);

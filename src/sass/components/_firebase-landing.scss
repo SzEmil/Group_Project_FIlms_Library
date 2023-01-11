@@ -10,7 +10,7 @@
   position: relative;
   background-color: get-bg-color(basic);
   z-index: 100;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
 
   display: none;
@@ -53,6 +53,13 @@
 #changeToLoginModal {
   margin-left: 2px;
 }
+#changeToRegisterModal {
+  background-color: transparent;
+  border: none;
+  color: get-bg-color(leading);
+  cursor: pointer;
+}
+
 .form-firebase__title {
   margin-bottom: 20px;
   text-align: center;
