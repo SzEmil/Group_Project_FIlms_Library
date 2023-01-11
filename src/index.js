@@ -4,9 +4,9 @@ const button = document.getElementById('scroll-to-top-button');
 
 window.onscroll = function () {
   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    button.classList.add('show'); // dodano
+    button.classList.add('show'); 
   } else {
-    button.classList.remove('show'); // dodano
+    button.classList.remove('show'); 
   }
 };
 
