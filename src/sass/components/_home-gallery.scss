@@ -106,3 +106,43 @@
 .home-gallery__card:hover .home-gallery__label {
   transform: translate(0);
 }
+
+#scroll-to-top-button {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 107, 1, 0.3);
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    rotate 250ms ease-in-out;
+  opacity: 0; /* dodano */
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#scroll-to-top-button.show {
+  /* dodano */
+  opacity: 1;
+  display: flex;
+  transform: rotate(180deg);
+}
+#scroll-to-top-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  transform: rotate(135deg);
+}
+#scroll-to-top-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  background-color: rgb(255, 107, 1);
+}
