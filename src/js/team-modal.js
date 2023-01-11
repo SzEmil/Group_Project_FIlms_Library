@@ -1,14 +1,21 @@
-(() => {
-  const refs = {
-    openModalBtn: document.querySelector('[data-modal-open]'),
-    closeModalBtn: document.querySelector('[data-modal-close]'),
-    modal: document.querySelector('[data-modal]'),
-  };
+const openModalBtn = document.querySelector('[data-modal-open]');
+const closeModalBtn = document.querySelector('[data-modal-close]');
+const modalWindow = document.querySelector('[data-modal]');
+const bodyWindow = document.querySelector('body');
 
-  refs.openModalBtn.addEventListener('click', toggleModal);
-  refs.closeModalBtn.addEventListener('click', toggleModal);
+openModalBtn.addEventListener('click', () => {
+  modalWindow.classList.toggle('hidden');
+  bodyWindow.style.overflow = 'hidden';
+});
 
-  function toggleModal() {
-    refs.modal.classList.toggle('hidden');
+closeModalBtn.addEventListener('click', () => {
+  modalWindow.classList.toggle('hidden');
+  bodyWindow.style.overflow = 'auto';
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') {
+    modalWindow.classList.toggle('hidden');
+    bodyWindow.style.overflow = 'auto';
   }
-})();
+});

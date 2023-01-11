@@ -19,7 +19,6 @@ $bg-color: (
   'team-close': #545454,
   'team-img': rgba(0, 0, 0, 0.5),
 );
-//$hover: ();
 
 @function get-font-color($key) {
   @return map-get($font-color, $key);
@@ -28,7 +27,3 @@ $bg-color: (
 @function get-bg-color($key) {
   @return map-get($bg-color, $key);
 }
-
-// @function get-hover($key) {
-//   @return map-get($hover, $key);
-// }
