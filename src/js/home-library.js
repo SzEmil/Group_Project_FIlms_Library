@@ -40,7 +40,7 @@ const renderVideoCard = videoArray => {
       videoArray.map(video => {
         const releaseDate = video.release_date;
         const movieYear = releaseDate.split('-');
-        let foundSrc = `https://image.tmdb.org/t/p/w300${video.poster_path}`;
+        let foundSrc = ``;
         if (video.poster_path === null) {
           foundSrc = `https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png`;
         } else {
