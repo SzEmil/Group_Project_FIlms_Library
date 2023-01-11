@@ -8,7 +8,7 @@
 }
 .firebase_modal {
   position: relative;
-  background-color: white;
+  background-color: get-bg-color(basic);
   z-index: 100;
   border: 1px solid #ccc;
   border-radius: 5px;

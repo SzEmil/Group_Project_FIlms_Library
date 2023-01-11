@@ -40,7 +40,7 @@
 
   &__logo,
   &__side-nav-link {
-    color: #ffffff;
+    color: get-font-color(on-leading-bg);
   }
 
   &__logo {
@@ -51,7 +51,7 @@
   }
 
   &__logo-icon {
-    color: #818181;
+    color: get-font-color(logo-fill);
   }
 
   &__logo-name {
@@ -63,7 +63,7 @@
       display: flex;
     }
     @media screen and (min-width: 1024px) {
-      visibility: visible;
+      display: flex;
     }
   }
 
@@ -88,12 +88,12 @@
     }
 
     &:hover:after {
-      background-color: #ffffff;
+      background-color: get-bg-color(basic);
       max-width: 100%;
     }
 
     &.active::after {
-      background-color: #ff6b08;
+      background-color: get-bg-color(leading);
       max-width: 100%;
     }
   }

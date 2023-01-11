@@ -3,22 +3,17 @@
 import { populateSection } from './my-library';
 let moreInfoModal = document.querySelector('.more-info-modal');
 let modalSection = document.querySelector('[data-modal-video]');
-// let body = document.querySelector('body');
+const body = document.querySelector('body');
 
 export const renderModal = example => {
-  moreInfoModal = document.querySelector('.more-info-modal');
-  modalSection = document.querySelector('[data-modal-video]');
-  // body = document.querySelector('body');
-
   modalSection.classList.remove('is-hidden');
-  modalSection.classList.add('backdrop');
   const parsedGenres = example.genres.map(genre => genre.name).join(', ');
 
   const markup = `<button class="more-info-modal__close-btn">
     X
   </button>
   <div class="container-modal">
-    <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
+    <img class="more-info-modal__poster" loading="lazy" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
     <div class="more-info-modal__description">
       <h1 class="more-info-modal__title">${example.title}</h1>
       <div class="more-info-modal__details">
@@ -58,21 +53,22 @@ export const renderModal = example => {
 
   moreInfoModal.innerHTML = markup;
 
-  // body.style.overflow = 'hidden';
+  body.classList.add('no-scroll');
+
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
 };
 
-// modalSection.addEventListener('click', event => {
-//   if (event.target.closest('.more-info-modal__btn-box')) {
-//     return;
-//   }
+modalSection.addEventListener('click', event => {
+  if (event.target.closest('.more-info-modal__btn-box')) {
+    return;
+  }
 
-//   modalSection.classList.add('is-hidden');
-//   modalSection.classList.remove('backdrop');
-//   body.style.overflow = 'auto';
-// });
+  modalSection.classList.add('is-hidden');
+  body.classList.remove('no-scroll');
+});
+
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') {
