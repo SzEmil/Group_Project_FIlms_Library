@@ -13,7 +13,7 @@ export const renderModal = example => {
     X
   </button>
   <div class="container-modal">
-    <img class="more-info-modal__poster" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
+    <img class="more-info-modal__poster" loading="lazy" src="https://image.tmdb.org/t/p/w300${example.poster_path}"  />
     <div class="more-info-modal__description">
       <h1 class="more-info-modal__title">${example.title}</h1>
       <div class="more-info-modal__details">
@@ -54,7 +54,7 @@ export const renderModal = example => {
   moreInfoModal.innerHTML = markup;
 
   body.classList.add('no-scroll');
-  //body.style.position = 'fixed'
+
   toggleButtonsInStorageIndicator(example.id);
   initModalListeners(example);
   modalSection.classList.remove('is-hidden');
@@ -67,7 +67,6 @@ modalSection.addEventListener('click', event => {
 
   modalSection.classList.add('is-hidden');
   body.classList.remove('no-scroll');
-  //body.style.position = ''
 });
 
 document.addEventListener('keydown', event => {

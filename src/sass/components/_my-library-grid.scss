@@ -54,6 +54,14 @@
     height: auto;
     display: block;
     cursor: pointer;
+    overflow: hidden;
+    object-fit: cover;
+    @media screen and (min-width: 768px) {
+      height: 398px;
+    }
+    @media screen and (min-width: 1024px) {
+      height: 398px;
+    }
   }
 
   &__label {
@@ -74,12 +82,13 @@
     opacity: 0.85;
     cursor: pointer;
     border-radius: 5px;
+    overflow: hidden;
 
     &-text {
       font-size: 35px;
       padding: 0 10px;
       text-align: center;
-      color: #ffffff;
+      color: get-font-color(on-leading-bg);
       text-transform: uppercase;
     }
   }
@@ -87,7 +96,7 @@
   &__signature {
     padding-top: 10px;
     position: relative;
-    background-color: white;
+    background-color: get-bg-color(basic);
     z-index: 3;
     height: 70px;
     width: 100%;
@@ -102,13 +111,13 @@
   }
 
   &__element-title {
-    color: #000000;
+    color: get-font-color(dark-text);
     text-transform: uppercase;
   }
 
   &__element-category,
   &__element-year {
-    color: #ff6b08;
+    color: get-font-color(leading);
   }
 
   &__element-year::before {
@@ -120,8 +129,8 @@
     line-height: 1.17;
     font-size: 12px;
     font-weight: 500;
-    color: #ffffff;
-    background: #ff6b08;
+    color: get-font-color(on-leading-bg);
+    background: get-bg-color(header-underline);
     padding: 1px 6px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -161,7 +170,7 @@
     font-size: 35px;
     font-weight: 300;
     transform: rotate(5deg) scale(0.9);
-    background-color: #ffffff;
+    background-color: get-bg-color(basic);
     box-sizing: border-box;
     padding: 30px;
     user-select: none;

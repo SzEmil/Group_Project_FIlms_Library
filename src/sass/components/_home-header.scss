@@ -113,12 +113,12 @@
   &__input {
     border: none;
     background-color: transparent;
-    color: #ffffff;
+    color: get-font-color(on-leading-bg);
   }
   &__icon {
     width: 12px;
     height: 12px;
-    stroke: white;
+    stroke: get-font-color(on-leading-bg);
     transition-property: scale, stroke;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -135,7 +135,7 @@
 }
 input::placeholder {
   font-weight: 400;
-  color: white;
+  color: get-font-color(on-leading-bg);
   line-height: 1.14;
   font-size: 14px;
 }

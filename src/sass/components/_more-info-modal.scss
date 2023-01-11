@@ -1,8 +1,14 @@
 .no-scroll {
-  position: fixed;
-  overflow-y: scroll;
+  overflow-y: hidden;
+  @media screen and (min-width: 1024px) {
+    padding-right: 15px;
+  }
 }
-
+@media screen and (min-width: 1024px) {
+  .no-scroll > .backdrop {
+    padding-right: 15px;
+  }
+}
 .is-hidden {
   opacity: 0;
   pointer-events: none;
@@ -203,7 +209,7 @@
     @media screen and (min-width: 1024px) {
       gap: 15;
       margin-top: 21px;
-      margin-bottom: 0;
+      margin-bottom: 40px;
       justify-content: flex-start;
     }
   }
