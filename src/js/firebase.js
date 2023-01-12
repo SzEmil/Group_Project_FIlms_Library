@@ -70,31 +70,35 @@ const saveuser = event => {
   const emailData = email.value;
   const passwordData = password.value;
 
-  createUserWithEmailAndPassword(auth, emailData, passwordData)
-    .then(userCredential => {
-      const user = userCredential.user;
+  if (passwordData.length < 6) {
+    Notiflix.Notify.failure('Too short password. Use at least 6 characters');
+  } else {
+    createUserWithEmailAndPassword(auth, emailData, passwordData)
+      .then(userCredential => {
+        const user = userCredential.user;
 
-      set(ref(database, 'users/' + user.uid), {
-        username: usernameData,
-        email: emailData,
-        password: passwordData,
-        // profile_picture : imageUrl
-      })
-        .then(() => {
-          Notiflix.Notify.success('User saved!');
-          hideModal();
-          firebaseBlock.classList.remove('backdrop');
+        set(ref(database, 'users/' + user.uid), {
+          username: usernameData,
+          email: emailData,
+          password: passwordData,
+          // profile_picture : imageUrl
         })
-        .catch(error => {
-          console.error(error);
-        });
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+          .then(() => {
+            Notiflix.Notify.success('User saved!');
+            hideModal();
+            firebaseBlock.classList.remove('backdrop');
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-      console.error(error);
-    });
+        console.error(error);
+      });
+  }
 };
 
 const loginUser = event => {
