@@ -36,23 +36,34 @@
         </li>
       </ul>
     </nav>
-
-    <form class="header-search-form" id="header-search-form">
-      <div class="header-search-form__box">
-        <input
-          class="header-search-form__input"
-          type="text"
-          name="searchQuery"
-          autocomplete="off"
-          placeholder="Search videos..."
-        />
-        <button class="header-search-form__btn" type="submit">
-          <svg class="header-search-form__icon">
-            <use href="./images/icons.svg#search-icon"></use>
-          </svg>
+    <div style="position: relative;">
+      <form class="header-search-form" id="header-search-form">
+        <div class="header-search-form__box">
+          <input
+            class="header-search-form__input"
+            type="text"
+            name="searchQuery"
+            autocomplete="off"
+            placeholder="Search videos..."
+          />
+          <button class="header-search-form__btn" type="submit">
+            <svg class="header-search-form__icon">
+              <use href="./images/icons.svg#search-icon"></use>
+            </svg>
+          </button>
+        </div>
+      </form>
+      <p id="randomlink">
+        Hard choice? Try
+        <button
+          class="header-search-form__random-btn"
+          id="randomBtn"
+          type="button"
+        >
+          Draw
         </button>
-      </div>
-    </form>
+      </p>
+    </div>
     <p class="search-error is-hidden"></p>
   </div>
   <script type="module" src="./js/home-library.js" defer></script>

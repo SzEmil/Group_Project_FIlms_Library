@@ -70,31 +70,35 @@ const saveuser = event => {
   const emailData = email.value;
   const passwordData = password.value;
 
-  createUserWithEmailAndPassword(auth, emailData, passwordData)
-    .then(userCredential => {
-      const user = userCredential.user;
+  if (passwordData.length < 6) {
+    Notiflix.Notify.failure('Too short password. Use at least 6 characters');
+  } else {
+    createUserWithEmailAndPassword(auth, emailData, passwordData)
+      .then(userCredential => {
+        const user = userCredential.user;
 
-      set(ref(database, 'users/' + user.uid), {
-        username: usernameData,
-        email: emailData,
-        password: passwordData,
-        // profile_picture : imageUrl
-      })
-        .then(() => {
-          Notiflix.Notify.success('User saved!');
-          hideModal();
-          firebaseBlock.classList.remove('backdrop');
+        set(ref(database, 'users/' + user.uid), {
+          username: usernameData,
+          email: emailData,
+          password: passwordData,
+          // profile_picture : imageUrl
         })
-        .catch(error => {
-          console.error(error);
-        });
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+          .then(() => {
+            Notiflix.Notify.success('User saved!');
+            hideModal();
+            firebaseBlock.classList.remove('backdrop');
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-      console.error(error);
-    });
+        console.error(error);
+      });
+  }
 };
 
 const loginUser = event => {
@@ -273,7 +277,7 @@ const generateRegisterForm = () => {
     >
       Register
     </button>
-    <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Sign in</button></p>
+    <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Login in</button></p>
   </form>
 </div>
 `;
@@ -294,7 +298,7 @@ function changeToLoginModal() {
   modalDiv.innerHTML = '';
   modalDiv.innerHTML = `      <form class="form-firebase-login">
   <button type="button" class="form-firebase__closeBtn">X</button>
-  <h2 class="form-firebase__title">Log in</h2>
+  <h2 class="form-firebase__title">Login in</h2>
 
   <div class="form-firebase__field">
     <label for="register-email" class="form-firebase__label">Email</label>

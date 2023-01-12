@@ -5,7 +5,7 @@ import { fetchVideoPopular } from './fetch-video';
 import { fetchDetails } from './fetch-video';
 import { fetchGenres } from './fetch-video';
 import { renderModal } from './more-info-modal';
-
+import { englishWords } from './words-table';
 // const form = document.querySelector('#search-form');
 const form = document.querySelector('#header-search-form');
 const gallery = document.querySelector('.home-gallery');
@@ -245,8 +245,6 @@ const searchVideo = async event => {
       // console.log(dataArray);
       renderVideoCard(dataArray);
       checkResult(totalResults);
-
-      console.log(`Wczytana strona: ${pageNumber}`);
     })
     .catch(error => {
       gallery.innerHTML = ``;
@@ -395,3 +393,72 @@ document.addEventListener('click', getDetails);
 nextBtn.addEventListener('click', nextPage);
 prevBtn.addEventListener('click', prevPage);
 document.addEventListener('click', pageByNumber);
+
+function maybeRandom() {
+  const inputForm = document.querySelector('.header-search-form__input');
+  const randomLink = document.querySelector('#randomlink');
+  if (inputForm.value === '') {
+    setTimeout(() => {
+      randomLink.style.visibility = 'visible';
+    }, 4000);
+  } else {
+    return;
+  }
+}
+function inputValue() {
+  const inputForm = document.querySelector('.header-search-form__input');
+  const randomLink = document.querySelector('#randomlink');
+  if (inputForm.value !== '') {
+    randomLink.style.visibility = 'hidden';
+    randomBtn.removeEventListener('click', searchRandom);
+  } else {
+    setTimeout(() => {
+      const randomLink = document.querySelector('#randomlink');
+      randomLink.style.visibility = 'visible';
+      randomBtn.addEventListener('click', searchRandom);
+    }, 4000);
+  }
+}
+const inputForm = document.querySelector('.header-search-form__input');
+inputForm.addEventListener('focus', maybeRandom);
+inputForm.addEventListener('input', inputValue);
+// window.addEventListener('click', () => {
+//   const randomLink = document.querySelector('#randomlink');
+//   randomLink.style.visibility = 'hidden';
+// });
+
+function generateSentence(words) {
+  var sentence = '';
+  for (var i = 0; i < 1; i++) {
+    var randomIndex = Math.floor(Math.random() * words.length);
+    sentence += words[randomIndex] + ' ';
+  }
+  return sentence;
+}
+const searchRandom = async () => {
+  let pageNumber = 1;
+  let formSearch = generateSentence(englishWords);
+  await fetchVideo(formSearch, pageNumber)
+    .then(data => {
+      const totalResults = data.total_results;
+      if (totalResults === 0) {
+        searchErr.textContent =
+          'Search result not successful. Enter the correct movie name.';
+        searchErr.classList.remove('is-hidden');
+        loadingDone();
+        return;
+      }
+      // console.log(data);
+      gallery.innerHTML = ``;
+      const dataArray = data.results;
+      // console.log(dataArray);
+      renderVideoCard(dataArray);
+      checkResult(totalResults);
+    })
+    .catch(error => {
+      gallery.innerHTML = ``;
+      console.error(error);
+    });
+};
+const randomBtn = document.querySelector('#randomBtn');
+randomBtn.addEventListener('click', searchRandom);
