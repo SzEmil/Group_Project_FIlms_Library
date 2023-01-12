@@ -273,7 +273,7 @@ const generateRegisterForm = () => {
     >
       Register
     </button>
-    <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Sign in</button></p>
+    <p class="form-firebase__paragraph">Already have an account?<button type="button" id="changeToLoginModal">Login in</button></p>
   </form>
 </div>
 `;
@@ -294,7 +294,7 @@ function changeToLoginModal() {
   modalDiv.innerHTML = '';
   modalDiv.innerHTML = `      <form class="form-firebase-login">
   <button type="button" class="form-firebase__closeBtn">X</button>
-  <h2 class="form-firebase__title">Log in</h2>
+  <h2 class="form-firebase__title">Login in</h2>
 
   <div class="form-firebase__field">
     <label for="register-email" class="form-firebase__label">Email</label>

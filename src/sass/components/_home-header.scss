@@ -89,6 +89,22 @@
     flex-direction: column;
     align-items: center;
   }
+  // -----------------------------------------------------
+  &__random-btn {
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    line-height: 1.14;
+
+    transition: color 250ms ease-in-out;
+
+    &:hover {
+      color: orange;
+    }
+  }
 
   &__box {
     display: flex;
@@ -160,4 +176,18 @@ input:active {
     display: flex;
     justify-content: center;
   }
+}
+#randomlink {
+  position: absolute;
+  font-weight: 500;
+  font-size: 12px;
+  border: none;
+  color: white;
+  line-height: 1.14;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  transition: visibility 250ms ease-in-out;
+  visibility: hidden;
 }
