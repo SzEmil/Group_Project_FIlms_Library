@@ -8,7 +8,7 @@ const body = document.querySelector('body');
 export const renderModal = example => {
   let foundSrc = ``;
   if (example.poster_path === null) {
-    foundSrc = `https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png`;
+    foundSrc = `https://scontent.xx.fbcdn.net/v/t1.15752-9/324876433_515011753945907_5094880799937398186_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=aee45a&_nc_ohc=CPCI4Yam_e0AX9eRJN5&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdQ0lgdF3j2QdVnr26sq4kCrZ-wu3LsaYxKDz79-gqJ0-w&oe=63E68EEB`;
   } else {
     foundSrc = `https://image.tmdb.org/t/p/w300${example.poster_path}`;
   }
