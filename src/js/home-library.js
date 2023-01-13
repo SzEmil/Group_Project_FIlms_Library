@@ -410,7 +410,6 @@ function inputValue() {
   const randomLink = document.querySelector('#randomlink');
   if (inputForm.value !== '') {
     randomLink.style.visibility = 'hidden';
-    randomBtn.removeEventListener('click', searchRandom);
   } else {
     setTimeout(() => {
       const randomLink = document.querySelector('#randomlink');
@@ -425,12 +424,7 @@ inputForm.addEventListener('input', inputValue);
 inputForm.addEventListener('blur', () => {
   const randomLink = document.querySelector('#randomlink');
   randomLink.style.visibility = 'hidden';
-  randomBtn.removeEventListener('click', searchRandom);
 });
-// window.addEventListener('click', () => {
-//   const randomLink = document.querySelector('#randomlink');
-//   randomLink.style.visibility = 'hidden';
-// });
 
 function generateSentence(words) {
   var sentence = '';
@@ -441,6 +435,8 @@ function generateSentence(words) {
   return sentence;
 }
 const searchRandom = async () => {
+  const randomLink = document.querySelector('#randomlink');
+  randomLink.style.visibility = 'hidden';
   let pageNumber = 1;
   let formSearch = generateSentence(englishWords);
   await fetchVideo(formSearch, pageNumber)
