@@ -12,7 +12,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-
+export let logedUser = 0;
 const homeLink = document.querySelector('#home-link');
 // const myLibraryLink = document.querySelector('#my-library-link');
 // myLibraryLink.style.display = 'none';
@@ -162,6 +162,7 @@ onAuthStateChanged(auth, user => {
     signOutButton.style.display = 'inline';
     signOutButton.addEventListener('click', signOutUser);
 
+    logedUser = 1;
     // ...
   } else {
     // User is signed out
@@ -169,9 +170,12 @@ onAuthStateChanged(auth, user => {
 
     signOutItem.style.display = 'none';
     loginBtn.style.display = 'inline';
+    logedUser = 0;
   }
 });
-
+export function isLoged() {
+  return logedUser;
+}
 function closeModalOnClick() {
   homeLink.classList.add('active');
   loginBtn.classList.remove('active');
@@ -420,3 +424,4 @@ function changeToLoginModal() {
 }
 
 loginBtn.addEventListener('click', generateRegisterForm);
+
