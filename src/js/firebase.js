@@ -12,7 +12,7 @@ import {
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-export let logedUser = 0;
+// export let logedUser = 0;
 const homeLink = document.querySelector('#home-link');
 // const myLibraryLink = document.querySelector('#my-library-link');
 // myLibraryLink.style.display = 'none';
@@ -146,6 +146,8 @@ const signOutUser = () => {
     });
 };
 
+const isLogedStorage = 'IsUserLoged';
+let isLoged;
 onAuthStateChanged(auth, user => {
   if (user) {
     // User is signed in
@@ -161,8 +163,8 @@ onAuthStateChanged(auth, user => {
     window.removeEventListener('click', closeModal);
     signOutButton.style.display = 'inline';
     signOutButton.addEventListener('click', signOutUser);
-
-    logedUser = 1;
+    isLoged = 1;
+    localStorage.setItem(isLogedStorage, JSON.stringify(isLoged));
     // ...
   } else {
     // User is signed out
@@ -170,12 +172,11 @@ onAuthStateChanged(auth, user => {
 
     signOutItem.style.display = 'none';
     loginBtn.style.display = 'inline';
-    logedUser = 0;
+    isLoged = 0;
+    localStorage.setItem(isLogedStorage, JSON.stringify(isLoged));
   }
 });
-export function isLoged() {
-  return logedUser;
-}
+
 function closeModalOnClick() {
   homeLink.classList.add('active');
   loginBtn.classList.remove('active');
@@ -424,4 +425,3 @@ function changeToLoginModal() {
 }
 
 loginBtn.addEventListener('click', generateRegisterForm);
-

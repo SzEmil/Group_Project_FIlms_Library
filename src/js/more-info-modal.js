@@ -4,7 +4,7 @@ import { populateSection } from './my-library';
 const moreInfoModal = document.querySelector('.more-info-modal');
 const modalSection = document.querySelector('[data-modal-video]');
 const body = document.querySelector('body');
-import { logedUser } from './firebase';
+
 export const renderModal = example => {
   let foundSrc = ``;
   if (example.poster_path === null) {
@@ -66,15 +66,20 @@ export const renderModal = example => {
   modalSection.classList.remove('is-hidden');
 
   const modalBtns = document.querySelectorAll('.more-info-modal__btn');
-
-  if (logedUser === 1) {
-    modalBtns.forEach(btn => {
-      btn.style.display = 'block';
-    });
-  } else if (logedUser === 0) {
-    modalBtns.forEach(btn => {
-      btn.style.display = 'none';
-    });
+  try {
+    const savedLogedStorage = localStorage.getItem('IsUserLoged');
+    const parsedLogedStorage = JSON.parse(savedLogedStorage);
+    if (parsedLogedStorage === 0) {
+      modalBtns.forEach(btn => {
+        btn.style.display = 'none';
+      });
+    } else if (parsedLogedStorage === 1) {
+      modalBtns.forEach(btn => {
+        btn.style.display = 'block';
+      });
+    }
+  } catch (error) {
+    console.error(error);
   }
 };
 
