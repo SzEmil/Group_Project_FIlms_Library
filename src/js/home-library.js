@@ -422,6 +422,11 @@ function inputValue() {
 const inputForm = document.querySelector('.header-search-form__input');
 inputForm.addEventListener('focus', maybeRandom);
 inputForm.addEventListener('input', inputValue);
+inputForm.addEventListener('blur', () => {
+  const randomLink = document.querySelector('#randomlink');
+  randomLink.style.visibility = 'hidden';
+  randomBtn.removeEventListener('click', searchRandom);
+});
 // window.addEventListener('click', () => {
 //   const randomLink = document.querySelector('#randomlink');
 //   randomLink.style.visibility = 'hidden';
